@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "دبلوم اللغة الإنجليزية",
+  "short_name": "دبلوم إنجليزي",
+  "description": "تعلّم الإنجليزية من الصفر إلى الاحتراف بالعربية",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f8f2e8",
+  "theme_color": "#2f6b5f",
+  "categories": ["education", "learning"],
+  "icons": [
+    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
+    {"src":"icons/icon-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+  ]
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+ <rect width="512" height="512" rx="112" fill="#2f6b5f"/>
+ <path d="M92 150c0-20 16-36 36-36h256c20 0 36 16 36 36v212c0 20-16 36-36 36H128c-20 0-36-16-36-36z" fill="#f7f8fb"/>
+ <path d="M256 132v266" stroke="#c23a2e" stroke-width="18"/>
+ <path d="M133 169h91v178h-91c-9 0-16-7-16-16V185c0-9 7-16 16-16zm246 0h-91v178h91c9 0 16-7 16-16V185c0-9-7-16-16-16z" fill="#2b4f9e"/>
+ <path d="M153 205h52m-52 38h52m102-38h52m-52 38h52" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+ <text x="256" y="305" font-family="Arial,sans-serif" font-size="74" font-weight="700" text-anchor="middle" fill="#f7f8fb">EN</text>
+</svg>
