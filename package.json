@@ -1,0 +1,14 @@
+
+{
+  "name": "english-diploma",
+  "version": "1.0.0",
+  "private": true,
+  "description": "English Diploma mobile application",
+  "dependencies": {
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/android": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.0.0"
+  }
+}
