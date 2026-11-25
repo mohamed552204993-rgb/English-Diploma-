@@ -1,4 +1,3 @@
-
 name: Build English Diploma APK
 
 on:
@@ -41,6 +40,14 @@ jobs:
 
       - name: Add Android platform
         run: npx cap add android
+
+      - name: Prepare original app icon
+        run: |
+          mkdir -p assets
+          cp icons/icon-512.png assets/icon.png
+
+      - name: Generate Android launcher icons
+        run: npx capacitor-assets generate --android
 
       - name: Sync Android
         run: npx cap sync android
