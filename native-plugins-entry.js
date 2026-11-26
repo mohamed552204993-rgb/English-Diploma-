@@ -36,7 +36,7 @@ if (Capacitor.isNativePlatform()) {
         if (!local || !local.available) throw new Error('ON_DEVICE_RECOGNITION_UNAVAILABLE');
         const result = await SpeechRecognition.start({
           language: this.lang,
-          maxResults: this.maxAlternatives || 3,
+          maxResults: 1,
           partialResults: false,
           popup: false,
           useOnDeviceRecognition: true
