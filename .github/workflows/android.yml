@@ -89,7 +89,9 @@ jobs:
           if marker not in s:
               raise SystemExit("Unexpected settings.gradle: dependencyResolutionManagement block missing")
           if "https://jitpack.io" not in s:
-              s = re.sub(r"(dependencyResolutionManagement\\s*\\{[\\s\\S]*?repositories\\s*\\{)", r"\\1\\n        maven { url 'https://jitpack.io' }", s, count=1)
+              start = s.index("dependencyResolutionManagement")
+              pos = s.index("repositories {", start)
+              s = s[:pos] + s[pos:].replace("repositories {", "repositories {\\n        maven { url 'https://jitpack.io' }", 1)
           settings.write_text(s)
 
           gradle = Path("android/app/build.gradle")
