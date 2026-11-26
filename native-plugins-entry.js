@@ -33,19 +33,36 @@ if (Capacitor.isNativePlatform()) {
   }
 
   if (typeof oldSpeak === 'function') {
+    let currentClipAudio = null;
     window.speak = function (text, slow, quiet) {
       const phrase = String(text || '');
       const accent = currentAccent();
-      let hasEmbeddedUSClip = false;
-      try { hasEmbeddedUSClip = accent !== 'UK' && !!AN[norm(phrase)]; } catch (_) {}
-      // Keep the existing 263 embedded recordings wherever they already cover the phrase.
-      if (hasEmbeddedUSClip) return oldSpeak(text, slow, quiet);
-
       const locale = accent === 'UK' ? 'en-GB' : 'en-US';
       const isSlow = slow === true || (typeof S !== 'undefined' && !!S.slow);
       (async () => {
         try {
           await TextToSpeech.stop();
+          if (currentClipAudio) {
+            currentClipAudio.pause();
+            currentClipAudio = null;
+          }
+
+          // Keep every existing embedded American recording; use native TTS if a clip cannot play.
+          let clip = null;
+          try { if (accent !== 'UK') clip = AN[norm(phrase)] || null; } catch (_) {}
+          if (clip) {
+            const audio = new Audio('data:audio/mpeg;base64,' + clip);
+            audio.playbackRate = isSlow ? 0.7 : 1;
+            audio.preservesPitch = true;
+            currentClipAudio = audio;
+            try {
+              await audio.play();
+              return;
+            } catch (_) {
+              if (currentClipAudio === audio) currentClipAudio = null;
+            }
+          }
+
           const voice = await voiceIndexFor(locale);
           const options = {
             text: phrase,
