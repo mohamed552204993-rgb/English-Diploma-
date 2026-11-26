@@ -99,6 +99,13 @@ jobs:
           }
           EOF
 
+      - name: Verify stable signing key is configured
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          test -s android/app/stable-upload-key.jks || { echo "Missing ANDROID_KEYSTORE_BASE64 secret. Add the stable signing secrets before building."; exit 1; }
+          keytool -list -keystore android/app/stable-upload-key.jks -storepass "$ANDROID_KEYSTORE_PASSWORD" -alias englishdiploma
+
       - name: Add offline Sherpa ONNX speech engine
         run: |
           # Download the small English streaming model and bundle only the quantized files.
