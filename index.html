@@ -5122,6 +5122,119 @@ const OLD_UNIT={};{let n=0;CURR.forEach(lv=>lv.units.forEach(u=>{n++;u.lessons.f
   }catch(err){console.error('unit reorganisation skipped:',err.message);window.__unitsError=err.message;}
 })();
 
+
+/* ---------- New, non-duplicated curriculum units: additive only ---------- */
+STEPS.x_a1_01=[
+ {h:"الأبجدية وأسماء الحروف",b:"<p>تتكون الأبجدية الإنجليزية من 26 حرفاً. لكل حرف اسم، وله صوت أو أكثر داخل الكلمات. لذلك نميّز بين اسم الحرف وصوته: اسم A هو /eɪ/، لكنه يُنطق قصيراً في كلمة <b>cat</b>.</p><p>تُكتب أسماء الأشخاص والمدن وبداية الجملة بحرف كبير: <b>My name is Ali.</b> أما بقية الكلمات فتكتب غالباً بحروف صغيرة.</p>"},
+ {h:"الحروف الكبيرة والصغيرة",b:"<p>كل حرف له شكل كبير مثل A وB، وشكل صغير مثل a وb. عند كتابة الاسم أو بداية الجملة استخدم الحرف الكبير. لا تكتب الكلمة كلها بحروف كبيرة إلا إذا كان النموذج يطلب ذلك.</p><p>مثال: <b>mohammed</b> تصبح <b>Mohammed</b> في بداية الاسم.</p>"},
+ {h:"تهجئة الاسم والكلمات",b:"<p>لتهجئة كلمة، قل أسماء الحروف بالترتيب: <b>BOOK = B-O-O-K</b>. اسأل: <b>How do you spell your name?</b> أي: كيف تتهجّى اسمك؟ وأجب: <b>M-A-R-Y.</b></p>"},
+ {h:"تدريب عملي",b:"<p>اقرأ الحروف بوضوح، ثم تهجّ اسمك واسم مدينتك. انتبه إلى الفرق بين أسماء الحروف المتشابهة في الصوت مثل B وP وD وT.</p>"}
+];
+STEPS.x_a1_02=[
+ {h:"تعليمات تسمعها في الصف",b:"<p>تبدأ تعليمات الصف غالباً بفعل مباشر: <b>Open your book.</b> افتح كتابك، و<b>Listen carefully.</b> استمع جيداً، و<b>Repeat after me.</b> كرر بعدي.</p>"},
+ {h:"طلب المساعدة",b:"<p>إذا لم تفهم، قل: <b>I don't understand.</b> لا أفهم، أو <b>Could you help me, please?</b> هل يمكنك مساعدتي من فضلك؟ ويمكنك طلب إعادة الكلام بقول: <b>Could you repeat that?</b></p>"},
+ {h:"أدوات الصف",b:"<p>من الأدوات: <b>board</b> سبورة، <b>notebook</b> دفتر، <b>pencil</b> قلم رصاص، <b>eraser</b> ممحاة، و<b>page</b> صفحة. استخدمها في جمل قصيرة: <b>Turn to page ten.</b></p>"},
+ {h:"تطبيق داخل الفصل",b:"<p>تدرّب على تنفيذ التعليمات بالترتيب، ثم اطلب التوضيح عند الحاجة. إضافة <b>please</b> تجعل الطلب أكثر لطفاً: <b>Write your name, please.</b></p>"}
+];
+STEPS.x_a2_01=[
+ {h:"إرسال رسالة أو طرد",b:"<p>في مكتب البريد يمكنك قول: <b>I'd like to send this parcel.</b> أود إرسال هذا الطرد. كلمة <b>parcel</b> تعني طرداً، و<b>envelope</b> تعني ظرفاً.</p>"},
+ {h:"العنوان والطوابع",b:"<p>اكتب <b>address</b> العنوان بوضوح، واسأل عن <b>stamp</b> الطابع أو <b>postage</b> أجرة الإرسال. يمكنك أن تقول: <b>How much is the postage?</b></p>"},
+ {h:"اختيار خدمة الإرسال",b:"<p>قد تختار <b>standard delivery</b> الإرسال العادي أو <b>express delivery</b> الإرسال السريع. اسأل عن موعد الوصول: <b>When will it arrive?</b></p>"},
+ {h:"إكمال المعاملة",b:"<p>احتفظ بـ <b>receipt</b> الإيصال، واستخدم <b>tracking number</b> رقم التتبع لمعرفة مكان الطرد. اطلب المساعدة إذا كان العنوان غير واضح.</p>"}
+];
+STEPS.x_a2_02=[
+ {h:"الإبلاغ عن غرض مفقود",b:"<p>إذا فقدت شيئاً في محطة أو متجر، قل: <b>I've lost my bag.</b> لقد فقدت حقيبتي. واستخدم <b>lost property</b> للأغراض المفقودة و<b>found item</b> للغرض الذي عُثر عليه.</p>"},
+ {h:"وصف الغرض",b:"<p>اذكر اللون والحجم والعلامة المميزة: <b>It's a small black backpack.</b> إنها حقيبة ظهر سوداء صغيرة. أضف ما بداخلها دون ذكر معلومات سرية.</p>"},
+ {h:"السؤال عن مكتب المفقودات",b:"<p>اسأل: <b>Where is the lost property office?</b> أين مكتب المفقودات؟ أو <b>Has anyone handed it in?</b> هل سلّمها أحد؟</p>"},
+ {h:"تأكيد الملكية",b:"<p>قد يُطلب منك وصف محتويات الغرض أو إبراز إثبات ملكية. قل: <b>I can describe what's inside.</b> أستطيع وصف ما بداخله.</p>"}
+];
+STEPS.x_b1_01=[
+ {h:"التعامل مع سوء الفهم",b:"<p>في الحوار قد يحدث سوء فهم. بدلاً من اتهام الطرف الآخر، استخدم: <b>I think there's been a misunderstanding.</b> أعتقد أن هناك سوء فهم.</p>"},
+ {h:"تصحيح الفكرة بلطف",b:"<p>قل: <b>That's not quite what I meant.</b> هذا ليس تماماً ما قصدته، أو <b>Let me rephrase that.</b> دعني أعيد صياغة كلامي.</p>"},
+ {h:"التأكد مما فهمته",b:"<p>أعد صياغة الفكرة كسؤال: <b>So, you mean the meeting is on Thursday?</b> إذن تقصد أن الاجتماع يوم الخميس؟ انتظر التأكيد قبل أن تتصرف.</p>"},
+ {h:"إغلاق الحوار بوضوح",b:"<p>اختم بتأكيد الاتفاق: <b>Thanks for clarifying.</b> شكراً على التوضيح. ثم لخّص النقطة المتفق عليها بجملة واحدة.</p>"}
+];
+STEPS.x_b1_02=[
+ {h:"ترتيب الخطوات",b:"<p>عند شرح إجراء، رتّب الخطوات زمنياً باستخدام <b>First</b> أولاً، <b>Next</b> تالياً، <b>After that</b> بعد ذلك، و<b>Finally</b> أخيراً.</p>"},
+ {h:"توضيح المتطلبات",b:"<p>اذكر ما يحتاجه الشخص قبل البدء: <b>You need a valid ID.</b> تحتاج إلى هوية سارية. استخدم <b>requirement</b> للمتطلب و<b>ensure</b> للتأكد.</p>"},
+ {h:"تحديد التوقيت والشرط",b:"<p><b>Prior to</b> تعني قبل، و<b>once</b> تعني بمجرد أن، و<b>unless</b> تعني ما لم. مثال: <b>The request won't proceed unless you sign.</b></p>"},
+ {h:"شرح النتيجة",b:"<p>اشرح ما يحدث بعد اكتمال الخطوات: <b>Once the form is submitted, it is reviewed.</b> بمجرد تقديم النموذج تتم مراجعته. لا تخلط بين ترتيب الخطوات والنتيجة النهائية.</p>"}
+];
+CURR.find(x=>x.level==="A1").units.push(
+ {en:"Letters & Spelling",ar:"الحروف وتهجئة الكلمات",lessons:[
+  lesson("x_a1_01","The English Alphabet","الأبجدية الإنجليزية وتهجئة الكلمات",[
+   ["alphabet","الأبجدية","The English alphabet has twenty-six letters."],["letter","حرف","The first letter of my name is M."],["capital letter","حرف كبير","Write your name with a capital letter."],["small letter","حرف صغير","Use a small letter in the middle of a word."],["spell","يتهجّى","Can you spell your surname?"],["vowel","حرف علة","A is a vowel."],["consonant","حرف ساكن","B is a consonant."],["pronunciation","النطق","Practise the pronunciation of each letter."]
+  ],"تعلّم أسماء الحروف وميّز بينها وبين أصواتها داخل الكلمات.",[
+   mc("كم عدد حروف الأبجدية الإنجليزية؟",["26","24","28"],0,"الأبجدية الإنجليزية تتكون من 26 حرفاً."),
+   mc("أي شكل نستخدم في بداية اسم الشخص؟",["Capital letter","Small letter","Number"],0,"تبدأ أسماء الأشخاص بحرف كبير."),
+   od("رتّب تهجئة BOOK","B-O-O-K","نذكر أسماء الحروف بالترتيب."),
+   mc("أي كلمة تعني حرف علة؟",["vowel","consonant","spell"],0,"Vowel تعني حرف علة."),
+   od("اسأل عن تهجئة الاسم","How do you spell your name?","هذه صيغة السؤال عن التهجئة."),
+   mc("ما الفرق بين اسم الحرف وصوته؟",["قد يختلفان","هما متطابقان دائماً","ليس للحرف صوت"],0,"اسم الحرف لا يساوي دائماً صوته داخل الكلمة.")
+  ]),
+  lesson("x_a1_02","Classroom Language","لغة الصف وأدوات التعلّم",[
+   ["board","سبورة","The teacher writes on the board."],["notebook","دفتر","Open your notebook, please."],["page","صفحة","Turn to page ten."],["pencil","قلم رصاص","I write with a pencil."],["eraser","ممحاة","Use an eraser to remove the mistake."],["repeat","يكرر","Please repeat the sentence."],["understand","يفهم","I don't understand this word."],["instruction","تعليمات","Listen to the instruction carefully."]
+  ],"افهم التعليمات القصيرة واطلب المساعدة بأدب.",[
+   mc("ما معنى repeat؟",["يكرر","يكتب","يغلق"],0,"Repeat تعني يكرر."),
+   mc("كيف تطلب إعادة الجملة؟",["Could you repeat that, please?","Close your notebook.","I am a board."],0,"هذه صيغة مهذبة لطلب الإعادة."),
+   od("رتّب: افتح كتابك من فضلك","Open your book, please.","يأتي الفعل Open في بداية الأمر."),
+   mc("ما معنى notebook؟",["دفتر","سبورة","ممحاة"],0,"Notebook تعني دفتر."),
+   od("قل: لا أفهم","I don't understand.","هذه جملة مباشرة لطلب التوضيح."),
+   mc("أي كلمة تعني تعليمات؟",["instruction","eraser","page"],0,"Instruction تعني تعليمات.")
+  ])
+ }
+);
+CURR.find(x=>x.level==="A2").units.push(
+ {en:"Everyday Services",ar:"الخدمات اليومية",lessons:[
+  lesson("x_a2_01","At the Post Office","في مكتب البريد وإرسال الطرود",[
+   ["post office","مكتب البريد","The post office closes at five."],["parcel","طرد","I need to send a parcel."],["envelope","ظرف","Put the letter in an envelope."],["stamp","طابع بريدي","How much is a stamp?"],["address","عنوان","Write the address clearly."],["postage","أجرة الإرسال","How much is the postage?"],["express delivery","إرسال سريع","I'd like express delivery."],["receipt","إيصال","Keep your receipt."],["tracking number","رقم التتبع","I have a tracking number."],["arrive","يصل","When will the parcel arrive?"]
+  ],"تعلّم إرسال الرسائل والطرود والسؤال عن التكلفة وموعد الوصول.",[
+   mc("ما معنى parcel؟",["طرد","طابع","إيصال"],0,"Parcel تعني طرداً."),
+   mc("ما الذي يساعدك على تتبع الطرد؟",["tracking number","envelope","stamp"],0,"رقم التتبع يوضح مسار الطرد."),
+   od("رتّب: أود إرسال هذا الطرد","I'd like to send this parcel.","تبدأ العبارة بطلب مهذب."),
+   mc("ما معنى postage؟",["أجرة الإرسال","عنوان","مكتب البريد"],0,"Postage تعني أجرة البريد."),
+   od("اسأل: متى سيصل؟","When will it arrive?","سؤال عن موعد الوصول."),
+   mc("لماذا تحتفظ بالإيصال؟",["لإثبات المعاملة","لتغيير العنوان","لإغلاق الظرف"],0,"الإيصال يثبت عملية الإرسال.")
+  ]),
+  lesson("x_a2_02","Lost Property","الإبلاغ عن غرض مفقود",[
+   ["lost property","الأغراض المفقودة","Ask at the lost property office."],["missing","مفقود","My phone is missing."],["backpack","حقيبة ظهر","I left my backpack on the bus."],["belongings","ممتلكات شخصية","Please check your belongings."],["hand in","يسلّم إلى جهة","Someone handed in my wallet."],["describe","يصف","Can you describe the bag?"],["owner","مالك","The owner must identify the item."],["proof","إثبات","Do you have proof of ownership?"],["claim","يطالب باسترجاع","I want to claim my suitcase."],["found","تم العثور عليه","Your keys have been found."]
+  ],"صف الغرض المفقود واسأل عن مكتب المفقودات وتأكيد الملكية.",[
+   mc("ما معنى missing؟",["مفقود","مكسور","جديد"],0,"Missing تعني مفقود."),
+   mc("ما معنى hand in؟",["يسلّم إلى جهة","يشتري","يستعير"],0,"Hand in تعني تسليم شيء إلى المسؤولين."),
+   od("رتّب: فقدت حقيبتي","I've lost my bag.","هذه صيغة شائعة للإبلاغ عن الفقد."),
+   mc("ما معنى owner؟",["مالك","موظف","سائق"],0,"Owner تعني المالك."),
+   od("اسأل: هل سلّمها أحد؟","Has anyone handed it in?","سؤال عن تسليم الغرض المفقود."),
+   mc("ما الذي قد يثبت ملكيتك؟",["وصف دقيق أو إثبات","لون الطقس","موعد الحافلة"],0,"قد يُطلب وصف أو إثبات للتأكد من الملكية.")
+  ])
+ }
+);
+CURR.find(x=>x.level==="B1").units.push(
+ {en:"Communication Skills",ar:"مهارات التواصل العملي",lessons:[
+  lesson("x_b1_01","Handling Misunderstandings","معالجة سوء الفهم في الحوار",[
+   ["misunderstanding","سوء فهم","There seems to be a misunderstanding."],["rephrase","يعيد الصياغة","Let me rephrase that."],["clarify","يوضح","Could you clarify your point?"],["interrupt","يقاطع","Sorry to interrupt, but I have a question."],["assume","يفترض","Don't assume you know the answer."],["context","سياق","The context changes the meaning."],["misinterpret","يسيء تفسير","I didn't mean to misinterpret your words."],["confirm","يؤكد","Let me confirm what you said."],["intention","نية","That wasn't my intention."],["confusion","التباس","I apologise for the confusion."]
+  ],"صحّح سوء الفهم دون اتهام الطرف الآخر، وأعد صياغة ما فهمته للتأكد.",[
+   mc("ما معنى clarify؟",["يوضح","يقاطع","ينسى"],0,"Clarify تعني يوضح."),
+   mc("أي عبارة تصحح الفكرة بلطف؟",["That's not quite what I meant.","You never listen.","That is impossible."],0,"العبارة الأولى محايدة ولا تتهم الطرف الآخر."),
+   od("رتّب: أعتذر عن الالتباس","I apologise for the confusion.","نبدأ بالاعتذار ثم نحدد سببه."),
+   mc("ما المقصود بـ context؟",["السياق","السرعة","الاعتذار"],0,"السياق هو الكلام والظروف المحيطة بالعبارة."),
+   od("رتّب: دعني أعيد صياغة ذلك","Let me rephrase that.","Rephrase تعني يعيد الصياغة."),
+   mc("ماذا تفعل قبل أن تستنتج قصد المتحدث؟",["تطلب التوضيح","تفترض مباشرة","تنهي الحوار"],0,"اطلب التوضيح لتجنب سوء الفهم.")
+  ]),
+  lesson("x_b1_02","Explaining a Process","شرح إجراء أو عملية خطوة بخطوة",[
+   ["procedure","إجراء","Follow the procedure carefully."],["stage","مرحلة","The first stage takes ten minutes."],["prior to","قبل","Check the form prior to submission."],["subsequently","بعد ذلك","The data is subsequently reviewed."],["ensure","يتأكد من","Ensure that every field is complete."],["requirement","متطلب","A signature is a basic requirement."],["submit","يقدّم","Submit the form online."],["process","عملية","The process has three stages."],["once","بمجرد أن","Once the payment is received, we send a receipt."],["unless","ما لم","The request will not proceed unless you sign."]
+  ],"رتّب الإجراءات زمنياً، واذكر المتطلبات والشرط والنتيجة.",[
+   mc("ما معنى procedure؟",["إجراء","شخص","سعر"],0,"Procedure تعني إجراء أو طريقة عمل محددة."),
+   mc("أي كلمة تعني بمجرد أن؟",["unless","once","prior"],1,"Once يمكن أن تعني بمجرد أن."),
+   mc("ما معنى ensure؟",["يتأكد من","ينسى","يؤجل"],0,"Ensure تعني يتأكد أو يضمن."),
+   od("رتّب: تأكد من اكتمال النموذج","Ensure that the form is complete.","تبدأ التعليمات بالفعل Ensure."),
+   mc("ما معنى unless؟",["ما لم","بعد ذلك","بالرغم من"],0,"Unless تقدم شرطاً سلبياً."),
+   od("رتّب: بمجرد استلام الدفع نرسل إيصالاً","Once the payment is received, we send a receipt.","Once تحدد الحدث الذي يسبق الإجراء التالي.")
+  ])
+ }
+);
+/* ---------- end of additive curriculum units ---------- */
+
+
 const LESSONS=[];const byId={};
 let unitNo=0;
 CURR.forEach(lv=>lv.units.forEach((u,ui)=>{unitNo++;u.ord=unitNo;u.idx=ui+1;u.level=lv.level;u.no=lv.level+'-'+(ui+1);u.lessons.forEach((L,i)=>{Object.assign(L,{level:lv.level,unit:u,unitNo:u.no,idx:i+1});LESSONS.push(L);byId[L.id]=L;});}));
