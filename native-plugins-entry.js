@@ -1,4 +1,5 @@
-import { Capacitor } from '@capacitor/core';
+import { Capacitor, registerPlugin } from '@capacitor/core';
+const OfflineSpeechRecognition = registerPlugin('OfflineSpeechRecognition');
 import { SpeechRecognition } from '@capgo/capacitor-speech-recognition';
 import { TextToSpeech } from '@capacitor-community/text-to-speech';
 
@@ -104,7 +105,7 @@ if (Capacitor.isNativePlatform()) {
       const status = document.createElement('div');
       status.className = 'note';
       status.setAttribute('role', 'status');
-      status.textContent = 'سيطلب التطبيق إذن الميكروفون عند أول استخدام. يحتاج التعرف على الكلام إلى خدمة صوت متاحة على الجهاز.';
+      status.textContent = 'التعرّف على الكلام يعمل محلياً داخل التطبيق ولا يحتاج إلى الإنترنت.';
       const row = document.createElement('div');
       row.className = 'row';
       const mic = document.createElement('button');
@@ -140,36 +141,14 @@ if (Capacitor.isNativePlatform()) {
 
       async function startNativeRecognition() {
         mic.disabled = true;
-        status.textContent = 'جارٍ طلب إذن الميكروفون...';
+        status.textContent = '🎙️ تحدّث الآن... تتم معالجة صوتك داخل التطبيق.';
         try {
-          const permission = await SpeechRecognition.requestPermissions();
-          if (!permission || permission.speechRecognition !== 'granted') {
-            status.textContent = 'لم يتم منح إذن الميكروفون. افتح إعدادات التطبيق واسمح باستخدام الميكروفون ثم أعد المحاولة.';
-            mic.disabled = false;
-            return;
-          }
-          const availability = await SpeechRecognition.available();
-          if (!availability || !availability.available) {
-            status.textContent = 'خدمة التعرف على الكلام غير متاحة على هذا الجهاز. تحقق من تثبيت/تفعيل خدمة Google Speech Services أو خدمة التعرف على الكلام.';
-            mic.disabled = false;
-            return;
-          }
-          status.textContent = '🎙️ تحدّث الآن...';
-          const result = await SpeechRecognition.start({
-            language: currentAccent() === 'UK' ? 'en-GB' : 'en-US',
-            maxResults: 3,
-            partialResults: false,
-            popup: true,
-            prompt: 'Speak the English sentence'
+          const result = await OfflineSpeechRecognition.recognize({
+            language: currentAccent() === 'UK' ? 'en-GB' : 'en-US'
           });
-          const matches = Array.isArray(result.matches) ? result.matches.filter(Boolean) : [];
-          if (matches.length) {
-            const score = value => {
-              const heardWords = cleanWords(value);
-              return cleanWords(ex.s).filter(word => heardWords.includes(word)).length;
-            };
-            matches.sort((a, b) => score(b) - score(a));
-            finish(matches[0]);
+          const heard = String(result && result.text || '').trim();
+          if (heard) {
+            finish(heard);
           } else {
             status.textContent = 'لم ألتقط كلاماً واضحاً. اقترب من الميكروفون وحاول مرة أخرى.';
             mic.disabled = false;
@@ -178,7 +157,7 @@ if (Capacitor.isNativePlatform()) {
           const message = String(error && (error.message || error.code) || error || '');
           status.textContent = /denied|permission/i.test(message)
             ? 'إذن الميكروفون مرفوض. اسمح به من إعدادات التطبيق ثم أعد المحاولة.'
-            : 'تعذر تشغيل التعرف على الكلام. تأكد من اتصال الإنترنت وتفعيل خدمة التعرف على الكلام في الجهاز، ثم أعد المحاولة.';
+            : message || 'تعذر تشغيل التعرف الصوتي المحلي. أعد المحاولة.';
           mic.disabled = false;
         }
       }
