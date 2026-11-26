@@ -38,6 +38,22 @@ jobs:
           mkdir -p www
           tar --exclude='./.git' --exclude='./.github' --exclude='./node_modules' --exclude='./www' -cf - . | tar -xf - -C www
 
+      - name: Bundle native speech plugins
+        run: |
+          npx esbuild native-plugins-entry.js --bundle --platform=browser --format=iife --target=es2020 --outfile=www/native-plugins.js
+          python - <<'PY'
+          from pathlib import Path
+          path = Path("www/index.html")
+          html = path.read_text(encoding="utf-8")
+          tag = '<script src="./native-plugins.js"></script>'
+          if tag not in html:
+              if "</body>" not in html:
+                  raise SystemExit("Could not find </body> in www/index.html")
+              html = html.replace("</body>", tag + "\\n</body>", 1)
+              path.write_text(html, encoding="utf-8")
+          print("Native speech plugins bundled and attached to the APK page.")
+          PY
+
       - name: Add Android platform
         run: npx cap add android
 
