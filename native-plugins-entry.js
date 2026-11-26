@@ -256,12 +256,15 @@ if (Capacitor.isNativePlatform()) {
       row.append(mic, slow);
       host.append(questionRow, sentence, row, status);
 
+      let attempts = 0;
+      const maxAttempts = 3;
+
       function finish(heard) {
-        const clean = value => normalizeText(value).replace(/[^a-z0-9' ]/g, ' ').split(/\s+/).filter(Boolean);
+        const clean = value => normalizeText(value).replace(/[^a-z0-9' ]/g, ' ').split(/\\s+/).filter(Boolean);
         const target = clean(ex.s);
         const words = clean(heard);
         if (!words.length) {
-          status.textContent = 'لم ألتقط كلاماً واضحاً. اقترب من الميكروفون وحاول مرة أخرى.';
+          status.textContent = 'لم ألتقط كلاماً واضحاً. اقترب من الميكروفون وتحدث بوضوح؛ لم تُحتسب هذه محاولة.';
           mic.disabled = false;
           return;
         }
@@ -275,17 +278,32 @@ if (Capacitor.isNativePlatform()) {
         }
         const ratio = 1 - rows[target.length][words.length] / Math.max(target.length, words.length, 1);
         if (ratio < 0.35) {
-          status.textContent = 'التعرف المحلي لم يلتقط الجملة بشكل موثوق. لن نحسبها خطأ؛ حاول مرة أخرى.';
+          status.textContent = 'لم أتمكن من تمييز الجملة بوضوح. اقترب من الميكروفون وجرّب مرة أخرى؛ لم تُحتسب هذه محاولة.';
           mic.disabled = false;
           return;
         }
+
+        attempts += 1;
+        const score = Math.round(ratio * 100);
         const passed = ratio >= 0.8;
+        const safeHeard = String(heard).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+        if (!passed && attempts < maxAttempts) {
+          status.textContent = 'قريب! سمعتُ: "' + heard + '". راجع الجملة وحاول مرة أخرى. المحاولة ' + attempts + ' من ' + maxAttempts + '.';
+          mic.textContent = '🎤 المحاولة التالية';
+          mic.disabled = false;
+          return;
+        }
+
         mic.hidden = true;
-        if (callback) callback({ ok: passed, heard, score: Math.round(ratio * 100) });
+        if (callback) callback({ ok: passed, heard, score, attempts, exhausted: !passed && attempts >= maxAttempts });
         if (typeof fb === 'function') {
-          fb(host, passed, ex.s, 'سمعتُ: <span class="en" dir="ltr">' +
-            String(heard).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])) +
-            '</span><br>دقة تطابق الكلمات وترتيبها: ' + Math.round(ratio * 100) + '%');
+          const note = passed
+            ? 'أحسنت! تطابق الكلمات وترتيبها: ' + score + '% — المحاولات: ' + attempts + ' من ' + maxAttempts
+            : 'انتهت المحاولات الثلاث. سمعتُ: <span class="en" dir="ltr">' + safeHeard +
+              '</span><br>الجملة المطلوبة: <span class="en" dir="ltr">' + ex.s +
+              '</span><br>تطابق الكلمات وترتيبها: ' + score + '%. استمع للجملة ثم تابع التدريب.';
+          fb(host, passed, ex.s, note);
         }
       }
 
