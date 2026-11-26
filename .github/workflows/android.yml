@@ -60,6 +60,44 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
+      - name: Configure stable Android signing and version
+        if: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          test -n "$ANDROID_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_KEY_ALIAS"
+          test -n "$ANDROID_KEY_PASSWORD"
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > android-upload-key.jks
+          test -s android-upload-key.jks
+          mkdir -p android/app
+          mv android-upload-key.jks android/app/stable-upload-key.jks
+          cat >> android/app/build.gradle <<'EOF'
+
+// Stable signing key: keep this key private in GitHub Actions Secrets.
+android {
+    signingConfigs {
+        debug {
+            storeFile file("stable-upload-key.jks")
+            storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("ANDROID_KEY_ALIAS")
+            keyPassword System.getenv("ANDROID_KEY_PASSWORD")
+        }
+    }
+    defaultConfig {
+        // Monotonically increasing versionCode so Android accepts in-place updates.
+        versionCode 10000 + Integer.parseInt(System.getenv("GITHUB_RUN_NUMBER"))
+    }
+}
+EOF
+
+      - name: Explain temporary signing fallback
+        if: ${{ secrets.ANDROID_KEYSTORE_BASE64 == '' }}
+        run: echo "WARNING - stable signing secrets are not configured; this APK uses a temporary runner debug key and cannot update an APK signed by another run."
+
       - name: Add offline Sherpa ONNX speech engine
         run: |
           # Download the small English streaming model and bundle only the quantized files.
