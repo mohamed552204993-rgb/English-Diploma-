@@ -1,4 +1,5 @@
 name: Build English Diploma APK
+# Build includes the native speech plugins for microphone input and TTS.
 
 on:
   push:
