@@ -105,7 +105,7 @@ if (Capacitor.isNativePlatform()) {
       function finish(heard) {
         const clean = value => {
           try { return norm(value).split(' ').filter(Boolean); }
-          catch (_) { return String(value).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\\s+/).filter(Boolean); }
+          catch (_) { return String(value).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean); }
         };
         const target = clean(ex.s);
         const words = clean(heard);
@@ -167,7 +167,7 @@ if (Capacitor.isNativePlatform()) {
       }
       function cleanWords(value) {
         try { return norm(value).split(' ').filter(Boolean); }
-        catch (_) { return String(value).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\\s+/).filter(Boolean); }
+        catch (_) { return String(value).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean); }
       }
       mic.addEventListener('click', startNativeRecognition);
 
