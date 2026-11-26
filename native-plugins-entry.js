@@ -10,9 +10,66 @@ if (Capacitor.isNativePlatform()) {
   window.NativeSpeechRecognition = SpeechRecognition;
   window.NativeTextToSpeech = TextToSpeech;
 
+  // Build a public lookup from the existing embedded recordings in index.html.
+  const embeddedAudio = {};
+  try {
+    for (const key in AUDIO) embeddedAudio[normalizeText(key)] = AUDIO[key];
+  } catch (_) {}
+
+  // Replace the browser recognizer with a Web Speech-compatible adapter that
+  // exclusively uses the platform's on-device model. No popup or cloud fallback.
+  class LocalSpeechRecognitionAdapter {
+    constructor() {
+      this.lang = 'en-US';
+      this.maxAlternatives = 3;
+      this.interimResults = false;
+      this.continuous = false;
+      this.onresult = null;
+      this.onerror = null;
+      this.onend = null;
+    }
+    async start() {
+      try {
+        const permission = await SpeechRecognition.requestPermissions();
+        if (!permission || permission.speechRecognition !== 'granted') throw new Error('permission denied');
+        const local = await SpeechRecognition.isOnDeviceRecognitionAvailable({ language: this.lang });
+        if (!local || !local.available) throw new Error('ON_DEVICE_RECOGNITION_UNAVAILABLE');
+        const result = await SpeechRecognition.start({
+          language: this.lang,
+          maxResults: this.maxAlternatives || 3,
+          partialResults: false,
+          popup: false,
+          useOnDeviceRecognition: true
+        });
+        const matches = Array.isArray(result.matches) ? result.matches.filter(Boolean) : [];
+        if (matches.length && typeof this.onresult === 'function') {
+          const alternatives = matches.map(transcript => ({ transcript }));
+          alternatives.isFinal = true;
+          this.onresult({ resultIndex: 0, results: [alternatives] });
+        }
+      } catch (error) {
+        const message = String(error && (error.message || error.code) || error || '');
+        const code = /ON_DEVICE_RECOGNITION_UNAVAILABLE/i.test(message)
+          ? 'service-not-allowed'
+          : /permission|denied/i.test(message) ? 'not-allowed' : 'service-not-allowed';
+        if (typeof this.onerror === 'function') this.onerror({ error: code });
+      } finally {
+        if (typeof this.onend === 'function') this.onend();
+      }
+    }
+    stop() { return SpeechRecognition.stop(); }
+    abort() { return SpeechRecognition.forceStop ? SpeechRecognition.forceStop() : SpeechRecognition.stop(); }
+  }
+  window.NativeSpeechRecognitionAdapter = LocalSpeechRecognitionAdapter;
+  window.SpeechRecognition = LocalSpeechRecognitionAdapter;
+  window.webkitSpeechRecognition = undefined;
+
   const oldSpeak = window.speak;
   let voiceCache = null;
 
+  function normalizeText(value) {
+    return String(value || '').toLowerCase().replace(/[’‘]/g, "'").replace(/[.,!?;:"]/g, '').replace(/\s+/g, ' ').trim();
+  }
   function currentAccent() {
     try { return S.accent === 'UK' ? 'UK' : 'US'; } catch (_) { return 'US'; }
   }
@@ -49,7 +106,7 @@ if (Capacitor.isNativePlatform()) {
 
           // Keep every existing embedded American recording; use native TTS if a clip cannot play.
           let clip = null;
-          try { if (accent !== 'UK') clip = AN[norm(phrase)] || null; } catch (_) {}
+          try { if (accent !== 'UK') clip = embeddedAudio[normalizeText(phrase)] || null; } catch (_) {}
           if (clip) {
             const audio = new Audio('data:audio/mpeg;base64,' + clip);
             audio.playbackRate = isSlow ? 0.7 : 1;
@@ -104,7 +161,7 @@ if (Capacitor.isNativePlatform()) {
       const status = document.createElement('div');
       status.className = 'note';
       status.setAttribute('role', 'status');
-      status.textContent = 'سيطلب التطبيق إذن الميكروفون عند أول استخدام. يحتاج التعرف على الكلام إلى خدمة صوت متاحة على الجهاز.';
+      status.textContent = 'سيستخدم التطبيق التعرف المحلي على الجهاز فقط، دون فتح نافذة Google أو إرسال التسجيل إلى خدمة خارجية.';
       const row = document.createElement('div');
       row.className = 'row';
       const mic = document.createElement('button');
@@ -120,21 +177,35 @@ if (Capacitor.isNativePlatform()) {
       host.append(questionRow, sentence, row, status);
 
       function finish(heard) {
-        const clean = value => {
-          try { return norm(value).split(' ').filter(Boolean); }
-          catch (_) { return String(value).toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean); }
-        };
+        const clean = value => normalizeText(value).replace(/[^a-z0-9' ]/g, ' ').split(/\s+/).filter(Boolean);
         const target = clean(ex.s);
         const words = clean(heard);
-        const missing = target.filter(word => !words.includes(word));
-        const ratio = target.length ? (target.length - missing.length) / target.length : 0;
+        if (!words.length) {
+          status.textContent = 'لم ألتقط كلاماً واضحاً. اقترب من الميكروفون وحاول مرة أخرى.';
+          mic.disabled = false;
+          return;
+        }
+        const rows = Array.from({ length: target.length + 1 }, (_, i) => [i, ...Array(words.length).fill(0)]);
+        for (let j = 1; j <= words.length; j++) rows[0][j] = j;
+        for (let i = 1; i <= target.length; i++) {
+          for (let j = 1; j <= words.length; j++) {
+            rows[i][j] = Math.min(rows[i - 1][j] + 1, rows[i][j - 1] + 1,
+              rows[i - 1][j - 1] + (target[i - 1] === words[j - 1] ? 0 : 1));
+          }
+        }
+        const ratio = 1 - rows[target.length][words.length] / Math.max(target.length, words.length, 1);
+        if (ratio < 0.35) {
+          status.textContent = 'التعرف المحلي لم يلتقط الجملة بشكل موثوق. لن نحسبها خطأ؛ حاول مرة أخرى.';
+          mic.disabled = false;
+          return;
+        }
         const passed = ratio >= 0.8;
         mic.hidden = true;
-        if (callback) callback({ ok: passed, heard });
+        if (callback) callback({ ok: passed, heard, score: Math.round(ratio * 100) });
         if (typeof fb === 'function') {
           fb(host, passed, ex.s, 'سمعتُ: <span class="en" dir="ltr">' +
             String(heard).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])) +
-            '</span>' + (missing.length ? '<br>كلمات لم أتعرف عليها: <span class="en" dir="ltr">' + missing.join(', ') + '</span>' : ''));
+            '</span><br>دقة تطابق الكلمات وترتيبها: ' + Math.round(ratio * 100) + '%');
         }
       }
 
@@ -148,19 +219,21 @@ if (Capacitor.isNativePlatform()) {
             mic.disabled = false;
             return;
           }
-          const availability = await SpeechRecognition.available();
+          const language = currentAccent() === 'UK' ? 'en-GB' : 'en-US';
+          const availability = await SpeechRecognition.isOnDeviceRecognitionAvailable({ language });
           if (!availability || !availability.available) {
-            status.textContent = 'خدمة التعرف على الكلام غير متاحة على هذا الجهاز. تحقق من تثبيت/تفعيل خدمة Google Speech Services أو خدمة التعرف على الكلام.';
+            status.textContent = 'التعرف الصوتي المحلي غير متاح حالياً لهذا الجهاز أو اللغة. لن نستخدم Google أو خدمة خارجية. يمكنك تجربة التسجيل الذاتي أو تنزيل نموذج التعرف المحلي من إعدادات خدمات الكلام في الجهاز.';
             mic.disabled = false;
             return;
           }
-          status.textContent = '🎙️ تحدّث الآن...';
+          status.textContent = '🎙️ يستمع التطبيق محلياً...';
           const result = await SpeechRecognition.start({
-            language: currentAccent() === 'UK' ? 'en-GB' : 'en-US',
+            language,
             maxResults: 3,
             partialResults: false,
-            popup: true,
-            prompt: 'Speak the English sentence'
+            popup: false,
+            useOnDeviceRecognition: true,
+            contextualStrings: cleanWords(ex.s)
           });
           const matches = Array.isArray(result.matches) ? result.matches.filter(Boolean) : [];
           if (matches.length) {
@@ -168,7 +241,6 @@ if (Capacitor.isNativePlatform()) {
               const heardWords = cleanWords(value);
               return cleanWords(ex.s).filter(word => heardWords.includes(word)).length;
             };
-            matches.sort((a, b) => score(b) - score(a));
             finish(matches[0]);
           } else {
             status.textContent = 'لم ألتقط كلاماً واضحاً. اقترب من الميكروفون وحاول مرة أخرى.';
