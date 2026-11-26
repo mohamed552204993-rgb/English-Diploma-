@@ -70,6 +70,15 @@ if (Capacitor.isNativePlatform()) {
       const question = document.createElement('div');
       question.className = 'q';
       question.textContent = 'استمع للجملة ثم اضغط الميكروفون وكرّرها بصوتك';
+      const questionRow = document.createElement('div');
+      questionRow.className = 'qrow';
+      const speaker = document.createElement('button');
+      speaker.type = 'button';
+      speaker.className = 'spk';
+      speaker.setAttribute('aria-label', 'استمع إلى الجملة');
+      speaker.textContent = '🔊';
+      speaker.addEventListener('click', () => window.speak(ex.s));
+      questionRow.append(question, speaker);
       const sentence = document.createElement('div');
       sentence.className = 'en';
       sentence.dir = 'ltr';
@@ -91,7 +100,7 @@ if (Capacitor.isNativePlatform()) {
       slow.textContent = '🐢 ببطء';
       slow.addEventListener('click', () => window.speak(ex.s, true));
       row.append(mic, slow);
-      host.append(question, sentence, row, status);
+      host.append(questionRow, sentence, row, status);
 
       function finish(heard) {
         const clean = value => {
