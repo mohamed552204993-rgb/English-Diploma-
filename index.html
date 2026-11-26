@@ -5330,7 +5330,7 @@ function renderLesson(page){
     const ex=run.exs[cur];
     pg.append(h('div',{class:'exhead'},`تمرين ${cur+1} من ${run.exs.length} · ${exStage(ex)}`));
     const host=h('div',{});pg.append(host);
-    renderEx(ex,host,run.ans[cur],res=>{run.ans[cur]=res;noteAns(ex,res.ok,L.id);});
+    renderEx(ex,host,run.ans[cur],res=>{run.ans[cur]=res;if(!res.skipped)noteAns(ex,res.ok,L.id);});
   }
 }
 
@@ -5473,7 +5473,7 @@ function renderQuiz(){
   }
   body.innerHTML=`<div class="exhead">سؤال ${Q.i+1} من ${Q.items.length}</div><div id="qhost"></div><div class="row"><button class="btn" id="qnext" disabled>${Q.i===Q.items.length-1?'النتيجة':'التالي'}</button></div>`;
   Q.answered=false;
-  renderEx(Q.items[Q.i],$('#qhost'),null,res=>{Q.answered=true;if(res.ok)Q.ok++;$('#qnext').disabled=false;});
+  renderEx(Q.items[Q.i],$('#qhost'),null,res=>{Q.answered=true;if(!res.skipped&&res.ok)Q.ok++;$('#qnext').disabled=false;});
 }
 
 /* ---------- events ---------- */
@@ -5550,11 +5550,11 @@ function renderExam(page){
   if(X.i>=X.qs.length)return examResult(page,X);
   page.innerHTML=`<div class="crumb">${X.title}</div><div class="xq">${X.kind==='p'?'المرحلة '+(X.stageIndex+1)+' من '+X.stages.length+' · '+X.stages[X.stageIndex].level+' · ':''}السؤال ${X.i+1} من ${X.qs.length} ${(X.kind==='r'||X.kind==='p')?'':'· النجاح من '+Math.round(X.thr*100)+'%'}</div><div id="xh"></div><div class="ubtns"><button class="pri" id="xnext" disabled>التالي</button><button id="xquit">خروج</button></div>`;
   const ex=X.qs[X.i];ex._ord=null;
-  renderEx(ex,$('#xh'),null,res=>{if(res.ok)X.ok++;if(X.kind==='p'){X.lv=X.lv||{};const l=ex._pl;X.lv[l]=X.lv[l]||[0,0];X.lv[l][1]++;if(res.ok)X.lv[l][0]++;}if(!res.ok)X.bad[ex._lid]=(X.bad[ex._lid]||0)+1;noteAns(ex,res.ok,ex._lid);$('#xnext').disabled=false;save();});
+  renderEx(ex,$('#xh'),null,res=>{if(res.skipped){X.skipped=(X.skipped||0)+1;}else{if(res.ok)X.ok++;if(X.kind==='p'){X.lv=X.lv||{};const l=ex._pl;X.lv[l]=X.lv[l]||[0,0];X.lv[l][1]++;if(res.ok)X.lv[l][0]++;}if(!res.ok)X.bad[ex._lid]=(X.bad[ex._lid]||0)+1;noteAns(ex,res.ok,ex._lid);}$('#xnext').disabled=false;save();});
   $('#xnext').onclick=()=>{X.i++;render();window.scrollTo(0,0);};
   $('#xquit').onclick=()=>{const k=X.kind==='u'&&LESSONS.find(l=>String(l.unitNo)===String(X.id));R.exam=null;if(k)goUnit(k.unit);else goIndex();};}
 function examResult(page,X){if(X.kind==='r')return reviewResult(page,X);if(X.kind==='p')return placementStageResult(page,X);
-  const r=X.ok/X.qs.length,pass=r>=X.thr;
+  const attempted=Math.max(1,X.qs.length-(X.skipped||0)),r=X.ok/attempted,pass=r>=X.thr;
   if(!X.done){X.done=true;
     if(pass){S.exams[X.key]=Math.max(S.exams[X.key]||0,r);
       const mark=ls=>ls.forEach(l=>{if(S.done[l.id]==null)S.done[l.id]=X.skip?PASS_SKIP:r;});
