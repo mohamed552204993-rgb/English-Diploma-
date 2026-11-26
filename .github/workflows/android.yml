@@ -41,6 +41,14 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
+      - name: Add Android microphone permissions
+        run: |
+          MANIFEST="android/app/src/main/AndroidManifest.xml"
+          grep -q 'android.permission.RECORD_AUDIO' "$MANIFEST" || sed -i '/<application/i\    <uses-permission android:name="android.permission.RECORD_AUDIO" />' "$MANIFEST"
+          grep -q 'android.permission.MODIFY_AUDIO_SETTINGS' "$MANIFEST" || sed -i '/<application/i\    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />' "$MANIFEST"
+          echo "Android microphone permissions:"
+          grep 'android.permission.*AUDIO' "$MANIFEST"
+
       - name: Prepare original app icon
         run: |
           python -m pip install --quiet pillow
