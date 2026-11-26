@@ -30,6 +30,7 @@ import java.util.concurrent.Executors;
         @Permission(alias = "microphone", strings = { Manifest.permission.RECORD_AUDIO })
     }
 )
+// Local recognition is performed entirely on-device using the bundled English model.
 public class OfflineSpeechRecognitionPlugin extends Plugin {
     private static final int SAMPLE_RATE = 16000;
     private static final String MODEL_DIR = "sherpa-onnx-en";
