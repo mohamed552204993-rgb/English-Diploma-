@@ -119,7 +119,7 @@ if (Capacitor.isNativePlatform()) {
           maxResults: 1,
           partialResults: false,
           popup: false,
-          useOnDeviceRecognition: true
+          useOnDeviceRecognition: false
         });
         const matches = Array.isArray(result.matches) ? result.matches.filter(Boolean) : [];
         if (matches.length && typeof this.onresult === 'function') {
@@ -340,7 +340,7 @@ if (Capacitor.isNativePlatform()) {
             maxResults: 3,
             partialResults: false,
             popup: false,
-            useOnDeviceRecognition: true,
+            useOnDeviceRecognition: false,
             contextualStrings: cleanWords(ex.s)
           });
           const matches = Array.isArray(result.matches) ? result.matches.filter(Boolean) : [];
