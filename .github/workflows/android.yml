@@ -1,4 +1,5 @@
 name: Build English Diploma APK
+# Offline speech recognition is bundled into Android builds.
 # Build includes the native speech plugins for microphone input and TTS.
 
 on:
