@@ -12,7 +12,11 @@ if (Capacitor.isNativePlatform()) {
 
   // Provide a Web Speech-compatible facade backed by the native Android TTS
   // plugin. Several existing lessons call speechSynthesis directly.
-  if (!('speechSynthesis' in window)) {
+  // Some Android WebViews expose the property name but leave it unusable.
+  // Install the native facade unless both the synthesizer and constructor work.
+  if (!window.speechSynthesis || typeof window.speechSynthesis.speak !== 'function' ||
+      typeof window.speechSynthesis.cancel !== 'function' ||
+      typeof window.SpeechSynthesisUtterance !== 'function') {
     class NativeSpeechSynthesisUtterance {
       constructor(text) {
         this.text = String(text || '');
