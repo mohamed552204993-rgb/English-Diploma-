@@ -112,14 +112,14 @@ if (Capacitor.isNativePlatform()) {
       try {
         const permission = await SpeechRecognition.requestPermissions();
         if (!permission || permission.speechRecognition !== 'granted') throw new Error('permission denied');
-        const local = await SpeechRecognition.isOnDeviceRecognitionAvailable({ language: this.lang });
-        if (!local || !local.available) throw new Error('ON_DEVICE_RECOGNITION_UNAVAILABLE');
+        const availability = await SpeechRecognition.available();
+        if (!availability || !availability.available) throw new Error('SPEECH_RECOGNITION_UNAVAILABLE');
         const result = await SpeechRecognition.start({
           language: this.lang,
           maxResults: 1,
           partialResults: false,
           popup: false,
-          useOnDeviceRecognition: true
+          useOnDeviceRecognition: false
         });
         const matches = Array.isArray(result.matches) ? result.matches.filter(Boolean) : [];
         if (matches.length && typeof this.onresult === 'function') {
@@ -241,7 +241,7 @@ if (Capacitor.isNativePlatform()) {
       const status = document.createElement('div');
       status.className = 'note';
       status.setAttribute('role', 'status');
-      status.textContent = 'سيستخدم التطبيق التعرف المحلي على الجهاز فقط، دون فتح نافذة Google أو إرسال التسجيل إلى خدمة خارجية.';
+      status.textContent = 'سيعمل التسجيل داخل التطبيق دون فتح نافذة منفصلة. يعتمد التعرف على خدمة الكلام المتاحة في جهازك.';
       const row = document.createElement('div');
       row.className = 'row';
       const mic = document.createElement('button');
@@ -318,19 +318,19 @@ if (Capacitor.isNativePlatform()) {
             return;
           }
           const language = currentAccent() === 'UK' ? 'en-GB' : 'en-US';
-          const availability = await SpeechRecognition.isOnDeviceRecognitionAvailable({ language });
+          const availability = await SpeechRecognition.available();
           if (!availability || !availability.available) {
-            status.textContent = 'التعرف الصوتي المحلي غير متاح حالياً لهذا الجهاز أو اللغة. لن نستخدم Google أو خدمة خارجية. يمكنك تجربة التسجيل الذاتي أو تنزيل نموذج التعرف المحلي من إعدادات خدمات الكلام في الجهاز.';
+            status.textContent = 'خدمة التعرف على الكلام غير متاحة في الجهاز حالياً. تحقق من تثبيت أو تفعيل خدمة تحويل الكلام إلى نص ثم أعد المحاولة.';
             mic.disabled = false;
             return;
           }
-          status.textContent = '🎙️ يستمع التطبيق محلياً...';
+          status.textContent = '🎙️ يستمع التطبيق... تحدث الآن.';
           const result = await SpeechRecognition.start({
             language,
             maxResults: 3,
             partialResults: false,
             popup: false,
-            useOnDeviceRecognition: true,
+            useOnDeviceRecognition: false,
             contextualStrings: cleanWords(ex.s)
           });
           const matches = Array.isArray(result.matches) ? result.matches.filter(Boolean) : [];
