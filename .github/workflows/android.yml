@@ -60,6 +60,17 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
+      - name: Set increasing Android version code
+        run: |
+          cat >> android/app/build.gradle <<'EOF'
+
+android {
+    defaultConfig {
+        versionCode 10000 + Integer.parseInt(System.getenv("GITHUB_RUN_NUMBER"))
+    }
+}
+EOF
+
       - name: Configure stable Android signing and version
         if: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
         env:
@@ -82,10 +93,6 @@ android {
             keyAlias "englishdiploma"
             keyPassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
         }
-    }
-    defaultConfig {
-        // Monotonically increasing versionCode so Android accepts in-place updates.
-        versionCode 10000 + Integer.parseInt(System.getenv("GITHUB_RUN_NUMBER"))
     }
 }
 EOF
@@ -169,6 +176,8 @@ EOF
         run: npx cap sync android
 
       - name: Build APK
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: |
           cd android
           chmod +x gradlew
