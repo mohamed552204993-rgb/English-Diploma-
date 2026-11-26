@@ -237,10 +237,6 @@ if (Capacitor.isNativePlatform()) {
           });
           const matches = Array.isArray(result.matches) ? result.matches.filter(Boolean) : [];
           if (matches.length) {
-            const score = value => {
-              const heardWords = cleanWords(value);
-              return cleanWords(ex.s).filter(word => heardWords.includes(word)).length;
-            };
             finish(matches[0]);
           } else {
             status.textContent = 'لم ألتقط كلاماً واضحاً. اقترب من الميكروفون وحاول مرة أخرى.';
@@ -250,7 +246,7 @@ if (Capacitor.isNativePlatform()) {
           const message = String(error && (error.message || error.code) || error || '');
           status.textContent = /denied|permission/i.test(message)
             ? 'إذن الميكروفون مرفوض. اسمح به من إعدادات التطبيق ثم أعد المحاولة.'
-            : 'تعذر تشغيل التعرف على الكلام. تأكد من اتصال الإنترنت وتفعيل خدمة التعرف على الكلام في الجهاز، ثم أعد المحاولة.';
+            : 'تعذر تشغيل التعرف الصوتي المحلي. تحقق من دعم الجهاز للنطق دون إنترنت وتوفر نموذج اللغة الإنجليزية، ثم أعد المحاولة.';
           mic.disabled = false;
         }
       }
