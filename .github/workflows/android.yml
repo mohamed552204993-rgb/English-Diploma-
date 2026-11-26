@@ -80,29 +80,21 @@ jobs:
           echo "Bundled offline English model:"
           du -h android/app/src/main/assets/sherpa-onnx-en/*
 
-          # Add JitPack to the generated root project repositories and the Sherpa library.
+          # Use the official Sherpa ONNX Android AAR from the v2.0.3 release.
+          # This avoids relying on JitPack publication/coordinates.
+          mkdir -p android/app/libs
+          curl -fL --retry 3 --retry-delay 2 \
+            -o android/app/libs/sherpa-onnx-2.0.3.aar \
+            https://github.com/k2-fsa/sherpa-onnx/releases/download/v2.0.3/sherpa-onnx-2.0.3.aar
+          test -s android/app/libs/sherpa-onnx-2.0.3.aar
+          ls -lh android/app/libs/sherpa-onnx-2.0.3.aar
+
           python - <<'PY'
           from pathlib import Path
           nl = chr(10)
-
-          root = Path("android/build.gradle")
-          root_text = root.read_text()
-          if "https://jitpack.io" not in root_text:
-              if "allprojects" in root_text:
-                  start = root_text.index("allprojects")
-                  pos = root_text.index("repositories {", start)
-                  root_text = root_text[:pos] + root_text[pos:].replace(
-                      "repositories {",
-                      "repositories {" + nl + "        maven { url 'https://jitpack.io' }",
-                      1
-                  )
-              else:
-                  root_text += nl + "allprojects { repositories { maven { url 'https://jitpack.io' } } }" + nl
-              root.write_text(root_text)
-
           gradle = Path("android/app/build.gradle")
           app_text = gradle.read_text()
-          dep = "implementation 'com.github.k2-fsa:sherpa-onnx:v2.0.3'"
+          dep = "implementation files('libs/sherpa-onnx-2.0.3.aar')"
           if dep not in app_text:
               if "dependencies {" not in app_text:
                   raise SystemExit("Unexpected app/build.gradle: dependencies block missing")
