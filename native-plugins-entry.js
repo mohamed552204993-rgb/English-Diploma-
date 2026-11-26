@@ -10,6 +10,82 @@ if (Capacitor.isNativePlatform()) {
   window.NativeSpeechRecognition = SpeechRecognition;
   window.NativeTextToSpeech = TextToSpeech;
 
+  // Provide a Web Speech-compatible facade backed by the native Android TTS
+  // plugin. Several existing lessons call speechSynthesis directly.
+  if (!('speechSynthesis' in window)) {
+    class NativeSpeechSynthesisUtterance {
+      constructor(text) {
+        this.text = String(text || '');
+        this.lang = 'en-US';
+        this.rate = 1;
+        this.pitch = 1;
+        this.volume = 1;
+        this.voice = null;
+        this.onstart = null;
+        this.onend = null;
+        this.onerror = null;
+        this.onboundary = null;
+      }
+    }
+    let nativeVoices = [];
+    let activeUtterance = null;
+    let speaking = false;
+    TextToSpeech.getSupportedVoices().then(result => {
+      nativeVoices = Array.isArray(result.voices) ? result.voices : [];
+      try { window.dispatchEvent(new Event('voiceschanged')); } catch (_) {}
+    }).catch(() => {});
+    window.SpeechSynthesisUtterance = NativeSpeechSynthesisUtterance;
+    window.speechSynthesis = {
+      getVoices() { return nativeVoices; },
+      get speaking() { return speaking; },
+      get pending() { return false; },
+      get paused() { return false; },
+      cancel() {
+        activeUtterance = null;
+        speaking = false;
+        TextToSpeech.stop().catch(() => {});
+      },
+      pause() { TextToSpeech.stop().catch(() => {}); speaking = false; },
+      resume() {},
+      speak(utterance) {
+        if (!utterance) return;
+        activeUtterance = utterance;
+        speaking = true;
+        const locale = String(utterance.lang || 'en-US').replace(/_/g, '-');
+        const selected = nativeVoices.findIndex(v =>
+          normalizeLocale(v.lang) === normalizeLocale(locale));
+        const options = {
+          text: String(utterance.text || ''),
+          lang: locale,
+          rate: Math.max(0.1, Math.min(2, Number(utterance.rate) || 1)),
+          pitch: Math.max(0, Math.min(2, Number(utterance.pitch) || 1)),
+          volume: Math.max(0, Math.min(1, Number(utterance.volume) || 1))
+        };
+        if (selected >= 0) options.voice = selected;
+        Promise.resolve().then(() => {
+          if (activeUtterance === utterance && typeof utterance.onstart === 'function') {
+            utterance.onstart(new Event('start'));
+          }
+          return TextToSpeech.speak(options);
+        }).then(() => {
+          if (activeUtterance === utterance) {
+            speaking = false;
+            activeUtterance = null;
+            if (typeof utterance.onend === 'function') utterance.onend(new Event('end'));
+          }
+        }).catch(error => {
+          if (activeUtterance === utterance) {
+            speaking = false;
+            activeUtterance = null;
+            if (typeof utterance.onerror === 'function') {
+              utterance.onerror({ error: 'synthesis-failed', message: String(error || '') });
+            }
+          }
+        });
+      }
+    };
+  }
+
   // Build a public lookup from the existing embedded recordings in index.html.
   const embeddedAudio = {};
   try {
