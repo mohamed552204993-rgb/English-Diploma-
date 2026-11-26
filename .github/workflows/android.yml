@@ -49,7 +49,7 @@ jobs:
           if tag not in html:
               if "</body>" not in html:
                   raise SystemExit("Could not find </body> in www/index.html")
-              html = html.replace("</body>", tag + "\\n</body>", 1)
+              html = html.replace("</body>", tag + "\n</body>", 1)
               path.write_text(html, encoding="utf-8")
           print("Native speech plugins bundled and attached to the APK page.")
           PY
