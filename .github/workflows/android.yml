@@ -102,7 +102,7 @@ jobs:
 
           gradle = Path("android/app/build.gradle")
           app_text = gradle.read_text()
-          dep = "implementation 'com.github.k2-fsa:sherpa-onnx:v2.0.3'"
+          dep = "implementation 'com.github.k2-fsa.sherpa-onnx:sherpa-onnx:v2.0.3'"
           if dep not in app_text:
               if "dependencies {" not in app_text:
                   raise SystemExit("Unexpected app/build.gradle: dependencies block missing")
