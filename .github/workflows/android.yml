@@ -58,6 +58,51 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
+      - name: Set increasing Android version code
+        run: |
+          cat >> android/app/build.gradle <<'EOF'
+
+          android {
+              defaultConfig {
+                  versionCode 10000 + Integer.parseInt(System.getenv("GITHUB_RUN_NUMBER"))
+              }
+          }
+          EOF
+
+      - name: Configure stable Android signing
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          if [ -z "$ANDROID_KEYSTORE_BASE64" ] || [ -z "$ANDROID_KEYSTORE_PASSWORD" ]; then
+            echo "ERROR: Stable signing secrets are required. Refusing to create an un-updatable debug APK."
+            exit 1
+          fi
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > android-upload-key.jks
+          test -s android-upload-key.jks
+          mv android-upload-key.jks android/app/stable-upload-key.jks
+          cat >> android/app/build.gradle <<'EOF'
+
+          // Use the same private signing key for every update.
+          android {
+              signingConfigs {
+                  debug {
+                      storeFile file("stable-upload-key.jks")
+                      storePassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
+                      keyAlias "englishdiploma"
+                      keyPassword System.getenv("ANDROID_KEYSTORE_PASSWORD")
+                  }
+              }
+          }
+          EOF
+
+      - name: Verify stable signing key
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          test -s android/app/stable-upload-key.jks || { echo "Stable signing key missing"; exit 1; }
+          keytool -list -keystore android/app/stable-upload-key.jks -storepass "$ANDROID_KEYSTORE_PASSWORD" -alias englishdiploma
+
       - name: Add Android microphone permissions
         run: |
           MANIFEST="android/app/src/main/AndroidManifest.xml"
