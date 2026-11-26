@@ -119,7 +119,7 @@ if (Capacitor.isNativePlatform()) {
           maxResults: 1,
           partialResults: false,
           popup: false,
-          useOnDeviceRecognition: false
+          useOnDeviceRecognition: true
         });
         const matches = Array.isArray(result.matches) ? result.matches.filter(Boolean) : [];
         if (matches.length && typeof this.onresult === 'function') {
@@ -253,14 +253,24 @@ if (Capacitor.isNativePlatform()) {
       slow.className = 'btn ghost';
       slow.textContent = '🐢 ببطء';
       slow.addEventListener('click', () => window.speak(ex.s, true));
+      const skip = document.createElement('button');
+      skip.type = 'button';
+      skip.className = 'btn ghost';
+      skip.textContent = '⏭ لا أستطيع التحدث الآن';
+      skip.addEventListener('click', () => {
+        mic.hidden = true;
+        skip.hidden = true;
+        status.textContent = 'تم تخطي التمرين. لن تُحتسب إجابة خاطئة.';
+        if (callback) callback({ ok: true, heard: '', skipped: true, score: null, attempts });
+      });
       row.append(mic, slow);
-      host.append(questionRow, sentence, row, status);
+      host.append(questionRow, sentence, row, skip, status);
 
       let attempts = 0;
       const maxAttempts = 3;
 
       function finish(heard) {
-        const clean = value => normalizeText(value).replace(/[^a-z0-9' ]/g, ' ').split(/\\s+/).filter(Boolean);
+        const clean = value => normalizeText(value).replace(/[^a-z0-9' ]/g, ' ').split(/\s+/).filter(Boolean);
         const target = clean(ex.s);
         const words = clean(heard);
         if (!words.length) {
@@ -330,7 +340,7 @@ if (Capacitor.isNativePlatform()) {
             maxResults: 3,
             partialResults: false,
             popup: false,
-            useOnDeviceRecognition: false,
+            useOnDeviceRecognition: true,
             contextualStrings: cleanWords(ex.s)
           });
           const matches = Array.isArray(result.matches) ? result.matches.filter(Boolean) : [];
@@ -356,7 +366,13 @@ if (Capacitor.isNativePlatform()) {
 
       if (previous) {
         mic.hidden = true;
-        finish(previous.heard || '');
+        if (previous.skipped) {
+          skip.hidden = true;
+          status.textContent = 'تم تخطي التمرين سابقاً. لن تُحتسب إجابة خاطئة.';
+        } else {
+          skip.hidden = true;
+          finish(previous.heard || '');
+        }
       }
     };
   }
