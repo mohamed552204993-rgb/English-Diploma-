@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - capacitor-build
+      - feature/optional-foundations-20261128
   workflow_dispatch:
 
 jobs:
