@@ -4,7 +4,7 @@
    - supabase-config.js: الشبكة أولاً (حتى لا يبقى إعداد قديم) ثم النسخة المحفوظة
    - خطوط Google تُحفظ لتبقى الواجهة بنفس شكلها دون إنترنت
    - التحديث الجديد ينتظر موافقة المستخدم (زر «تحديث») حتى لا يُقطع درس جارٍ */
-const VERSION = 'v7';
+const VERSION = 'v8';
 const CACHE_NAME = 'english-diploma-' + VERSION;
 const FONT_CACHE = 'english-diploma-fonts';
 const SCOPE = self.registration.scope;
@@ -25,10 +25,8 @@ const OPTIONAL = [
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
-    /* الأساسي يجب أن ينجح، والباقي لا يُفشل التثبيت إن غاب ملف (مثل supabase-config.js) */
     await cache.addAll(CRITICAL);
     await Promise.allSettled(OPTIONAL.map((u) => cache.add(u)));
-    /* أول تثبيت: نفعّله فوراً. تحديث لاحق: ينتظر زر «تحديث» في التطبيق */
     if (!self.registration.active) await self.skipWaiting();
   })());
 });
@@ -54,7 +52,7 @@ async function appFile(event) {
   const cache = await caches.open(CACHE_NAME);
   const u = new URL(req.url);
   u.search = '';
-  const isDoc = req.mode === 'navigate' || u.href === SCOPE || u.href === INDEX;   /* الجذر وindex.html مستند واحد */
+  const isDoc = req.mode === 'navigate' || u.href === SCOPE || u.href === INDEX;
   const isNav = req.mode === 'navigate';
   let hit = isDoc ? await cache.match(INDEX) : null;
   if (!hit) hit = await cache.match(req, { ignoreSearch: true });
@@ -113,5 +111,4 @@ self.addEventListener('fetch', (event) => {
   if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
     event.respondWith(fontFile(event));
   }
-  /* بقية الطلبات الخارجية (Supabase وغيرها) لا يتدخل فيها الـ Service Worker */
 });
