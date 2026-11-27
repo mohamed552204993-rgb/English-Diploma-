@@ -997,8 +997,7 @@ STEPS.l602=[
 STAGES.l602=['مقدمة','الكلمات','الفكرة','الفكرة','الفكرة','أمثلة','أخطاء','ملخص'];
 CHECKS.l602={
  2:{q:'She has been ___ French since January.',o:['learning','learned','learn'],a:0,why:'بعد has been يأتي الفعل مع -ing.'},
- 3:{q:'Your hair is wet. ___ you been swimming?',o:['Have','Did','Are'],a:0,why:'نبدأ السؤال بـ Have.'},
- 4:{q:'I have ___ three emails this morning.',o:['written','been writing','been written'],a:0,why:'العدد المحدد يستخدم المضارع التام البسيط.'}};
+ 3:{q:'Your hair is wet. ___ you been swimming?',o:['Have','Did','Are'],a:0,why:'نبدأ السؤال بـ Have.'}, 4:{q:'I have ___ three emails this morning.',o:['written','been writing','been written'],a:0,why:'العدد المحدد يستخدم المضارع التام البسيط.'}};
 
 STEPS.l603=[
  {h:'ماذا سنتعلم؟',b:`<p>الماضي التام للحدث الذي وقع قبل حدث ماضٍ آخر:</p><p>• ${e('When I arrived, the film had already started.')}</p><p>• ${e('She was sad because she had lost her phone.')}</p>`},
@@ -1997,8 +1996,7 @@ mkSteps('l909',{
  c:['A: Is freedom the same as having no rules?','B: Freedom is more than the absence of control.','A: And equality?','B: It is often argued that equality requires opportunity.'],
  x:[['The freedom comes with responsibility.','Freedom comes with responsibility.'],['The elderlies deserve dignity.','The elderly deserve dignity.'],['Tolerance build peaceful societies.','Tolerance builds peaceful societies.']],
  s:[['مفهوم','بلا the عادةً'],['فئة','«the + صفة»'],['تعميم حذر','«It is often argued that ...»']],
- q:[['___ comes with responsibility.',['Freedom','The freedom','A freedom'],'اسم مجرد عام بلا the.'],['___ deserve dignity.',['The elderly','Elderly the','An elderly'],'the + صفة = فئة.'],['Tolerance ___ peaceful societies.',['builds','build','building'],'اسم مجرد مفرد: builds.']]
-});
+ q:[['___ comes with responsibility.',['Freedom','The freedom','A freedom'],'اسم مجرد عام بلا the.'],['___ deserve dignity.',['The elderly','Elderly the','An elderly'],'the + صفة = فئة.'],['Tolerance ___ peaceful societies.',['builds','build','building'],'اسم مجرد مفرد: builds.']]});
 
 mkSteps('l910',{
  i:['كيف تكشف الحجة الضعيفة وتفنّدها:','This argument rests on the assumption that all rich people are happy.','It does not follow that every rich person is happy.','One counterexample is enough to disprove the claim.'],
@@ -2997,8 +2995,7 @@ CURR.push({level:'B1',name:'المتوسط',units:[
     mc('اختر الجملة الصحيحة:',['Did he call you?','Did he called you?','Does he called you?'],0,'بعد did يرجع الفعل لصيغته الأصلية.'),
     od('ذهبنا إلى السوق أمس','We went to the market yesterday.')]),
   lesson('l102','Present perfect','المضارع التام',[
-    ['ever','في أي وقت','Have you ever been to London?'],['never','أبداً','I have never eaten sushi.'],['already','بالفعل','She has already left.'],
-    ['yet','بعد / حتى الآن','Have you finished yet?'],['experience','خبرة / تجربة','It was a great experience.'],['lately','مؤخراً','I have been busy lately.']],
+    ['ever','في أي وقت','Have you ever been to London?'],['never','أبداً','I have never eaten sushi.'],['already','بالفعل','She has already left.'],    ['yet','بعد / حتى الآن','Have you finished yet?'],['experience','خبرة / تجربة','It was a great experience.'],['lately','مؤخراً','I have been busy lately.']],
    `<p>الصيغة: <b>have / has + التصريف الثالث</b>: ${e('I have seen that film.')}</p><p>نستخدمه للخبرات في الحياة بلا ذكر وقت محدد، أو لشيء بدأ في الماضي وله أثر الآن: ${e('She has lost her phone.')}</p><p>مقارنة: ${e('I saw it yesterday.')} (وقت محدد: ماضٍ بسيط) و${e('I have seen it.')} (خبرة).</p>`,
    [mc('I ___ never been to Japan.',['have','has','did'],0),
     mc('She ___ already finished her homework.',['has','have','is'],0,'مع she نستخدم has.'),
@@ -3997,8 +3994,7 @@ CURR.find(l=>l.level==='B1').units.push({en:'Past & Future Links',ar:'ربط ا�
    od('سأتصل بك حالما أصل','I will call you as soon as I arrive.'),
    od('انتظر حتى أعود','Wait until I come back.')])
 ]});
-CURR.find(l=>l.level==='B1').units.push({en:'Verb Patterns & Questions',ar:'أنماط الأفعال والأسئلة',lessons:[
- lesson('l605','Gerunds & infinitives','المصدر والفعل بعد الأفعال',[
+CURR.find(l=>l.level==='B1').units.push({en:'Verb Patterns & Questions',ar:'أنماط الأفعال والأسئلة',lessons:[ lesson('l605','Gerunds & infinitives','المصدر والفعل بعد الأفعال',[
   ['enjoy','يستمتع','I enjoy cooking.'],['avoid','يتجنب','Avoid driving at night.'],['decide','يقرر','She decided to leave.'],
   ['want','يريد','I want to learn.'],['hope','يأمل','I hope to see you.'],['finish','ينهي','I finished reading.'],
   ['mind','يمانع','Do you mind opening the window?'],['manage','ينجح في','I managed to fix it.'],['refuse','يرفض','He refused to help.'],
@@ -4997,8 +4993,7 @@ CURR.find(l=>l.level==='A1').units.push({en:'Places & Dates',ar:'الأماكن 
  lesson('l1107','Prepositions of place','حروف المكان',[
   ['in','في (داخل)','The cat is in the box.'],['on','على','The book is on the table.'],['under','تحت','The shoes are under the bed.'],
   ['next to','بجانب','The school is next to the bank.'],['behind','خلف','The garden is behind the house.'],['in front of','أمام','The car is in front of the house.'],
-  ['between','بين','The shop is between the bank and the school.'],['near','قريب من','The bus stop is near my house.'],['above','فوق','The lamp is above the desk.'],
-  ['opposite','مقابل','The park is opposite the school.'],['inside','داخل','Put it inside the bag.'],['outside','خارج','The children are outside.']],
+  ['between','بين','The shop is between the bank and the school.'],['near','قريب من','The bus stop is near my house.'],['above','فوق','The lamp is above the desk.'],  ['opposite','مقابل','The park is opposite the school.'],['inside','داخل','Put it inside the bag.'],['outside','خارج','The children are outside.']],
   `<p>للسؤال عن المكان: ${e('Where is the book?')} وللجواب: ${e('It is on the table.')} ${e('It is under the chair.')}</p><p>للجوار: ${e('The bank is next to the school.')} ${e('The park is opposite the school.')}</p><p>${e('between')} تحتاج شيئين: ${e('The shop is between the bank and the school.')}</p>`,
   [mc('The cat is ___ the box. It is inside.',['in','on','at'],0),
    mc('The book is ___ the table.',['on','in','under'],0),
@@ -5182,7 +5177,7 @@ CURR.find(x=>x.level==="A1").units.push(
    od("قل: لا أفهم","I don't understand.","هذه جملة مباشرة لطلب التوضيح."),
    mc("أي كلمة تعني تعليمات؟",["instruction","eraser","page"],0,"Instruction تعني تعليمات.")
   ])
- }
+ ]}
 );
 CURR.find(x=>x.level==="A2").units.push(
  {en:"Everyday Services",ar:"الخدمات اليومية",lessons:[
@@ -5206,7 +5201,7 @@ CURR.find(x=>x.level==="A2").units.push(
    od("اسأل: هل سلّمها أحد؟","Has anyone handed it in?","سؤال عن تسليم الغرض المفقود."),
    mc("ما الذي قد يثبت ملكيتك؟",["وصف دقيق أو إثبات","لون الطقس","موعد الحافلة"],0,"قد يُطلب وصف أو إثبات للتأكد من الملكية.")
   ])
- }
+ ]}
 );
 CURR.find(x=>x.level==="B1").units.push(
  {en:"Communication Skills",ar:"مهارات التواصل العملي",lessons:[
@@ -5230,7 +5225,7 @@ CURR.find(x=>x.level==="B1").units.push(
    mc("ما معنى unless؟",["ما لم","بعد ذلك","بالرغم من"],0,"Unless تقدم شرطاً سلبياً."),
    od("رتّب: بمجرد استلام الدفع نرسل إيصالاً","Once the payment is received, we send a receipt.","Once تحدد الحدث الذي يسبق الإجراء التالي.")
   ])
- }
+ ]}
 );
 /* ---------- end of additive curriculum units ---------- */
 
@@ -5997,8 +5992,7 @@ const _dec3=decorate;decorate=function(){_dec3();const g=$('.dash .goal');if(!g)
 function critCard(key,list){
   let saved=[];try{saved=(S.spec.wc&&S.spec.wc[key])||[];}catch(e){saved=[];}
   const box=h('div',{class:'card'}),prog=h('div',{class:'note',role:'status',style:'margin-top:6px'});
-  const upd=()=>{const on=[];box.querySelectorAll('input[type=checkbox]').forEach((c,i)=>{if(c.checked)on.push(i);});
-    try{S.spec.wc=S.spec.wc||{};S.spec.wc[key]=on;save();}catch(e){}
+  const upd=()=>{const on=[];box.querySelectorAll('input[type=checkbox]').forEach((c,i)=>{if(c.checked)on.push(i);});    try{S.spec.wc=S.spec.wc||{};S.spec.wc[key]=on;save();}catch(e){}
     prog.textContent='أتممت '+on.length+' من '+list.length+' معايير'+(on.length===list.length?' ✅ ممتاز':'')+'.';};
   box.append(h('b',{},'معايير التقييم الذاتي'));
   list.forEach((c,i)=>box.append(h('label',{style:'display:flex;gap:10px;align-items:center;margin:6px 0;min-height:44px;cursor:pointer'},h('input',{type:'checkbox',checked:saved.includes(i),onchange:upd,style:'width:20px;height:20px;flex:0 0 auto'}),c)));
@@ -6997,8 +6991,7 @@ const G=[
 ['C1','g-c1-2','Inversion for Emphasis','القلب للتأكيد',"في الأسلوب الرسمي نقدّم الفعل المساعد بعد عبارات النفي مثل never وrarely وhardly: Never have I seen...",[['Never have I seen such a view.','لم أرَ في حياتي مثل هذا المنظر.'],['Rarely does he complain.','نادراً ما يشتكي.']],['I have never seen ← عادي','Never have I seen ← تأكيد رسمي'],[['Never ___ such a beautiful place.',['have I seen','I have seen','I saw'],'بعد Never نقدّم المساعد.'],['Rarely ___ he arrives late.',['does','do','is'],'Rarely does he arrive.'],['Hardly ___ we sat down when it rained.',['had','have','did'],'Hardly had we sat down.']]],
 ['C2','g-c2-1','Cleft Sentences','الجمل المشقوقة',"نبرز جزءاً من الجملة باستخدام It is ... that أو What ... is: It was Sara who called. What I need is time.",[['It was Omar who broke the window.','عمر هو من كسر النافذة.'],['What I need is a long rest.','ما أحتاجه هو راحة طويلة.']],['Omar broke the window ← عادية','It was Omar who broke it ← إبراز الفاعل'],[['It was the noise ___ woke me.',['that','what','who'],'It was ... that.'],['___ I need is more time.',['What','That','Which'],'What I need is ...'],['It was Sara ___ called.',['who','what','whose'],'للشخص نستخدم who.']]],
 ['C2','g-c2-2','Subjunctive after Suggest / Insist','صيغة الأمر بعد suggest وinsist',"بعد أفعال مثل suggest وdemand وinsist وrecommend نستخدم أصل الفعل بلا s ولا زمن: I suggest that he go.",[['I suggest that she leave early.','أقترح أن تغادر مبكراً.'],['They insisted that he be present.','أصرّوا على أن يحضر.']],['suggest that he go ← أصل الفعل','not goes'],[['I suggest that he ___ the manager.',['see','sees','saw'],'نستخدم الأصل: see.'],['She demanded that the report ___ corrected.',['be','is','was'],'أصل be.'],['It is vital that everyone ___ on time.',['arrive','arrives','arrived'],'أصل الفعل.']]]
-];
-window.__G=G;
+];window.__G=G;
 const sv=()=>{if(!S.gram)S.gram={};return S.gram;};
 let lvl='A1',cur=null,ans={};
 const prev=render;
@@ -7997,8 +7990,7 @@ function renderQuiz(box){
       wrap.append(b);
     });
     box.append(wrap);
-    const chk=h('button',{type:'button',class:'btn'},'تحقق');
-    chk.addEventListener('click',()=>{
+    const chk=h('button',{type:'button',class:'btn'},'تحقق');    chk.addEventListener('click',()=>{
       if(Q.ans)return;
       const A=q.a.slice().sort().join(','),B=Q.sel.slice().sort((x,y)=>x-y).join(',');
       const ok=A===B;
@@ -8997,8 +8989,7 @@ render=function(){
 #gate .gt-foot{margin:6px 0 0;text-align:center;font-size:14px;color:#4a5f58}
 #gate .gt-foot button{background:none;border:0;color:#0b6b5d;font:700 14px var(--ff-ar,system-ui,sans-serif);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:10px 4px;min-height:44px}
 #gate .gt-rule{font-size:12.5px;color:#6b7f77;margin:-6px 2px 12px;line-height:1.7}
-#gate .gt-sheetbd{position:fixed;inset:0;z-index:5;background:rgba(2,24,18,.62);display:flex;align-items:flex-end;justify-content:center}
-#gate .gt-sheetbd[hidden]{display:none}
+#gate .gt-sheetbd{position:fixed;inset:0;z-index:5;background:rgba(2,24,18,.62);display:flex;align-items:flex-end;justify-content:center}#gate .gt-sheetbd[hidden]{display:none}
 #gate .gt-sheet{width:100%;max-width:460px;background:#fff;border-radius:26px 26px 0 0;padding:22px 20px calc(env(safe-area-inset-bottom,0px) + 18px);box-shadow:0 -10px 40px rgba(0,0,0,.3);animation:gtUp .24s ease-out}
 @keyframes gtUp{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
 #gate .gt-sheet h3{margin:0 0 8px;font-size:20px;color:#0a3d2e}
@@ -9997,8 +9988,7 @@ function restoreAll(){
     if(n.nodeType===3){var o=origT.get(n);if(o!==undefined){n.nodeValue=o;origT.delete(n)}}
     else{var m=origA.get(n);if(m){for(var a in m)n.setAttribute(a,m[a]);origA.delete(n)}}
   }
-  document.title=TITLE_AR;
-}
+  document.title=TITLE_AR;}
 var TITLE_AR=document.title;
 var pend=new Set(),sched=false;
 function flush(){sched=false;var s=Array.from(pend);pend.clear();s.forEach(function(n){if(n.isConnected||n.nodeType===3)walk(n)});gateBtn()}
@@ -10116,4 +10106,94 @@ gateBtn();
 })();
 </script>
 
+<script src="./native-plugins.js"></script>
+<script id="phase7-8-integration">
+/* Phase 7 + 8 integration: independent skill assessments and curriculum audit.
+   Deliberately does not use SpeechRecognition/MediaRecorder or modify native microphone code. */
+(function(){
+'use strict';
+const SKILL_BANK={"A1":{"reading":{"title":"Reading: A simple day","passage":"My name is Lina. I live in a small town. I work in a shop from Sunday to Thursday. I start at nine o’clock. After work, I visit my sister. We drink tea and talk.","q":[["Where does Lina work?",["In a shop","In a school","At a hospital"],0],["When does she start work?",["At eight","At nine","At ten"],1],["Who does she visit after work?",["Her mother","Her friend","Her sister"],2]]},"listening":{"title":"Listening: At the café","audio":"Hello. Can I have a small coffee and a cheese sandwich, please? Of course. Would you like sugar? No, thank you. How much is it? It is six dollars.","q":[["What does the customer order?",["Tea and cake","Coffee and a sandwich","Juice and bread"],1],["Does the customer want sugar?",["Yes","No","Not mentioned"],1],["How much is it?",["Four dollars","Five dollars","Six dollars"],2]]},"writing":{"title":"Writing: Introduce yourself","task":"Write 4–6 sentences about your name, country, job or studies, and one thing you like.","min":4},"speaking":{"title":"Speaking: Introduce yourself","task":"Speak for 30–45 seconds. Say your name, where you are from, what you do, and one thing you like.","min":30}},"A2":{"reading":{"title":"Reading: A weekend plan","passage":"Last Friday, Omar planned a short trip with two friends. They took the early bus to the coast because the weather was expected to be sunny. They walked along the beach, ate lunch at a small restaurant, and returned home before dark. Omar enjoyed the trip, although the bus journey was longer than he expected.","q":[["How did they travel?",["By car","By bus","By train"],1],["Why did they choose the coast?",["The weather was expected to be sunny","It was cheaper","They had family there"],0],["What did Omar think about the journey?",["It was shorter than expected","It was too expensive","It was longer than expected"],2]]},"listening":{"title":"Listening: Changing an appointment","audio":"Good afternoon. I’m calling about my appointment on Tuesday. I’m afraid I can’t come at ten. Do you have anything available after lunch? We have a time at two thirty. That would be perfect. Thank you for your help.","q":[["When is the original appointment?",["Monday","Tuesday","Wednesday"],1],["Why does the caller need a change?",["Cannot come at ten","Feels unwell","Will be travelling"],0],["What new time is offered?",["One thirty","Two thirty","Three thirty"],1]]},"writing":{"title":"Writing: Describe a recent day","task":"Write 6–8 sentences about a day you enjoyed. Include where you went, what you did, and how you felt.","min":6},"speaking":{"title":"Speaking: Give directions","task":"Speak for about one minute explaining how to get from your home to a nearby shop or public place. Use sequence words.","min":45}},"B1":{"reading":{"title":"Reading: Learning at work","passage":"When the company introduced a new booking system, some employees were worried that it would make their work more complicated. The manager therefore arranged short training sessions and invited staff to report problems during the first month. The change was not completely smooth: a few records were entered incorrectly, and customers sometimes had to wait longer. However, after the team shared practical suggestions, the system became easier to use and appointments were managed more reliably.","q":[["Why were some employees worried?",["The system might complicate their work","Their hours would change","The office would close"],0],["What did the manager arrange?",["A pay rise","Training sessions","A new office"],1],["What helped improve the system?",["Hiring more customers","Ignoring errors","Staff suggestions"],2]]},"listening":{"title":"Listening: A delayed delivery","audio":"I’m calling to let you know that your order will arrive one day later than planned. The supplier has experienced a transport problem. We have already arranged a replacement vehicle, and your parcel should reach you by Thursday afternoon. I apologise for the inconvenience and will send you an update tomorrow.","q":[["How late will the order be?",["One day","Two days","One week"],0],["What caused the delay?",["Bad weather","A transport problem","A staff meeting"],1],["When should the parcel arrive?",["Wednesday morning","Thursday afternoon","Friday evening"],1]]},"writing":{"title":"Writing: Give your opinion","task":"Write 100–130 words: Is practical experience more valuable than formal education? Give reasons and an example.","min":90},"speaking":{"title":"Speaking: Solve a customer problem","task":"Speak for 1–2 minutes. Explain how you would respond to a customer who received the wrong item, and suggest a fair solution.","min":60}},"B2":{"reading":{"title":"Reading: Flexible working","passage":"Flexible working arrangements are often presented as a straightforward way to improve employee satisfaction. In practice, their success depends on more than allowing staff to work from home. Teams need clear expectations, suitable technology, and opportunities for informal communication. Without these, employees may experience isolation or uncertainty about priorities. Nevertheless, when managers focus on outcomes rather than physical presence, flexible arrangements can widen access to jobs and reduce unnecessary commuting. The strongest approach is usually adapted to the nature of the work rather than imposed uniformly.","q":[["What is the main argument?",["Remote work always succeeds","Flexible work requires supporting conditions","Offices are no longer useful"],1],["What may happen without clear support?",["Employees may feel isolated","Salaries automatically rise","Work becomes shorter"],0],["What approach does the writer favour?",["One rule for every job","A complete return to offices","Adapting arrangements to the work"],2]]},"listening":{"title":"Listening: Project review","audio":"Overall, the campaign performed better than we had anticipated, particularly in terms of website visits. However, the increase in visits did not translate into an equivalent rise in sales. The data suggests that the landing page may not have communicated the offer clearly enough. I recommend testing two alternative versions before we increase the advertising budget.","q":[["What exceeded expectations?",["Sales","Website visits","Customer complaints"],1],["What did not rise equally?",["Sales","Website visits","Social media posts"],0],["What is recommended?",["End the campaign","Increase the budget immediately","Test two landing pages"],2]]},"writing":{"title":"Writing: Balanced argument","task":"Write 160–190 words discussing whether cities should invest more in public transport than roads. Present both sides and your position.","min":145},"speaking":{"title":"Speaking: Present and defend a proposal","task":"Speak for 2 minutes proposing one improvement to a workplace or community. Explain benefits, possible drawbacks, and how to implement it.","min":90}},"C1":{"reading":{"title":"Reading: Evidence and policy","passage":"Policy debates frequently rely on headline statistics, yet figures rarely speak for themselves. A decline in reported incidents, for instance, may indicate that a policy is working; alternatively, it may reflect changes in reporting behaviour or data collection. Responsible interpretation therefore requires attention to methodology, comparison groups, and the broader context. This does not mean quantitative evidence should be dismissed. Rather, it should be treated as one component of an argument whose strength depends on the quality of the underlying assumptions and the plausibility of competing explanations.","q":[["What caution does the passage emphasise?",["Statistics require contextual interpretation","Numbers are always misleading","Policy should ignore data"],0],["A decline in reported incidents might reflect…",["Only policy success","Changes in reporting behaviour","A larger population"],1],["How should quantitative evidence be used?",["As the sole basis for decisions","Not at all","As one component of an argument"],2]]},"listening":{"title":"Listening: Research discussion","audio":"The initial findings are encouraging, but I would hesitate to draw a firm conclusion at this stage. The sample is relatively small, and the participants were recruited from a narrow range of institutions. A follow-up study involving a more diverse group would help establish whether the pattern holds beyond the original setting. We should describe the current result as suggestive rather than conclusive.","q":[["How does the speaker view the findings?",["Promising but preliminary","Completely invalid","Conclusive"],0],["What is a limitation?",["The study took too long","The sample is small and narrow","There were no findings"],1],["What is recommended?",["Stop the research","Publish a firm conclusion","Conduct a more diverse follow-up study"],2]]},"writing":{"title":"Writing: Critical analysis","task":"Write 200–230 words analysing whether technological convenience always leads to better outcomes. Qualify your claims and use examples.","min":180},"speaking":{"title":"Speaking: Evaluate a complex issue","task":"Speak for 2–3 minutes evaluating the benefits and risks of using AI in education. Distinguish evidence from opinion and reach a nuanced conclusion.","min":120}},"C2":{"reading":{"title":"Reading: The limits of certainty","passage":"Intellectual confidence is sometimes mistaken for the absence of doubt. Yet sophisticated judgement often consists precisely in recognising where certainty ends and interpretation begins. This is not an invitation to relativism: some explanations are demonstrably better supported than others. It is, rather, an insistence that conclusions remain proportionate to the evidence, that anomalies are not explained away merely because they are inconvenient, and that revisions of belief need not be regarded as intellectual defeat. A position is strongest not when it is immune to scrutiny, but when it has survived serious scrutiny while remaining open to warranted revision.","q":[["What distinction does the passage make?",["Doubt and ignorance are identical","Judgement can include awareness of uncertainty","All interpretations are equally valid"],1],["The writer rejects…",["Evidence-based conclusions","Careful revision","Relativism and unsupported certainty"],2],["When is a position strongest?",["When it survives scrutiny and remains revisable","When nobody questions it","When it never changes"],0]]},"listening":{"title":"Listening: Editorial judgement","audio":"I would resist framing the issue as a choice between innovation and regulation. That opposition is rhetorically convenient, but analytically crude. The more pertinent question is whether particular safeguards are proportionate to demonstrable risks, and whether they can be revised as evidence develops. Poorly designed rules may entrench incumbents; an absence of oversight may transfer substantial costs to those least able to bear them. The challenge, then, is institutional design rather than a blanket endorsement of either position.","q":[["What does the speaker criticise?",["A simplistic opposition between innovation and regulation","All forms of innovation","Evidence-based safeguards"],0],["What should safeguards be proportionate to?",["Political popularity","Demonstrable risks","Company size"],1],["What is described as the real challenge?",["Removing all rules","Choosing one extreme","Designing effective institutions"],2]]},"writing":{"title":"Writing: Synthesis and nuance","task":"Write 230–260 words synthesising the tension between individual freedom and collective responsibility. Develop a qualified, coherent position.","min":210},"speaking":{"title":"Speaking: Nuanced argument","task":"Speak for 3 minutes on this question: Should expertise carry greater weight than public opinion in major policy decisions? Address competing principles and qualify your conclusion.","min":150}}};
+const SKILL_LEVELS=['A1','A2','B1','B2','C1','C2'];
+const SKILL_NAMES={reading:'القراءة',listening:'الاستماع',writing:'الكتابة',speaking:'المحادثة'};
+const SKILL_KEYS=['reading','listening','writing','speaking'];
+let skillUI={level:'A1',skill:'reading'};
+const esc7=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const examKey=(lv,sk)=>lv+'_'+sk;
+function results(){if(!S.skillExams||typeof S.skillExams!=='object')S.skillExams={};return S.skillExams;}
+function record(lv,sk,data){results()[examKey(lv,sk)]=Object.assign({},data,{level:lv,skill:sk,completedAt:new Date().toISOString()});save();}
+function countStatus(){const all=Object.values(results());return {done:all.length,passed:all.filter(x=>x.passed).length};}
+function backToTests(){R.view='tests';render();window.scrollTo(0,0);}
+function openSkills(){renderSkillsPage($('#page'));window.scrollTo(0,0);}
+function renderSkillsPage(page){
+ const totals=countStatus(),old=results();let html='<div class="crumb"><button class="lnk" type="button" data-skill-action="back">← الاختبارات</button> · المرحلة السابعة</div>';
+ html+='<h1>اختبارات المهارات المستقلة</h1><p class="note">24 اختباراً مستقلاً: أربع مهارات في كل مستوى من A1 إلى C2. القراءة والاستماع بتصحيح آلي، والكتابة والمحادثة بتقييم ذاتي وفق معايير واضحة. درجة الاجتياز 70%.</p>';
+ html+='<div class="stats" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div class="stat"><b>'+totals.done+' / 24</b><span>اختبارات مكتملة</span></div><div class="stat"><b>'+totals.passed+' / 24</b><span>اختبارات مجتازة</span></div></div>';
+ html+='<h3>اختر المستوى</h3><div class="conv-levels">'+SKILL_LEVELS.map(l=>'<button type="button" data-skill-level="'+l+'" aria-pressed="'+(skillUI.level===l)+'">'+l+'</button>').join('')+'</div>';
+ html+='<div class="conv-levels">'+SKILL_KEYS.map(k=>'<button type="button" data-skill-kind="'+k+'" aria-pressed="'+(skillUI.skill===k)+'">'+SKILL_NAMES[k]+'</button>').join('')+'</div>';
+ const d=SKILL_BANK[skillUI.level][skillUI.skill],key=examKey(skillUI.level,skillUI.skill),prior=old[key];
+ html+='<div class="conv-card"><div class="row2" style="justify-content:space-between"><h3>'+esc7(d.title)+' · '+skillUI.level+'</h3><span class="tag">'+(prior?(prior.passed?'✓ مجتاز':'مكتمل · يحتاج مراجعة'):'لم يبدأ')+'</span></div>';
+ if(skillUI.skill==='reading')html+='<p dir="ltr" style="text-align:left;line-height:1.95">'+esc7(d.passage)+'</p>';
+ if(skillUI.skill==='listening')html+='<p class="note">استمع إلى النص دون إظهار النص المكتوب، ثم أجب عن الأسئلة.</p><button type="button" class="btn" data-skill-action="play">🔊 تشغيل الاستماع</button>';
+ if(skillUI.skill==='writing')html+='<p>'+esc7(d.task)+'</p><p class="note">الحد الأدنى المقترح: '+d.min+' كلمة. لا تُمنح درجة آلية لمجرد عدد الكلمات؛ قيّم جودة إجابتك بالمعايير أدناه.</p><textarea id="skillDraft" rows="9" dir="auto" placeholder="Write your answer in English..." style="width:100%;box-sizing:border-box;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);font:inherit">'+esc7(prior&&prior.response||'')+'</textarea><p id="skillWordCount" class="note">عدد الكلمات: 0</p>';
+ if(skillUI.skill==='speaking')html+='<p>'+esc7(d.task)+'</p><p class="note">نفّذ المهمة بصوتك خارج التطبيق أو تحدث أمام نفسك، ثم قيّم الأداء. لم أضف مسار ميكروفون جديداً حتى لا ألمس نظام التسجيل الأصلي الذي تم إصلاحه.</p><div class="note">المدة المطلوبة: '+d.min+' ثانية على الأقل.</div>';
+ if(skillUI.skill==='reading'||skillUI.skill==='listening'){
+  html+=d.q.map((q,i)=>'<div class="skill-q" style="margin:16px 0"><b>'+(i+1)+'. '+esc7(q[0])+'</b>'+q[1].map((a,j)=>'<label style="display:block;margin:9px 0"><input type="radio" name="skillq'+i+'" value="'+j+'" '+(prior&&prior.answers&&prior.answers[i]===j?'checked':'')+'> '+esc7(a)+'</label>').join('')+'</div>').join('');
+  html+='<button type="button" class="btn" data-skill-action="mark">صحّح إجاباتي</button>';
+ }else{
+  const criteria=skillUI.skill==='writing'?['هل أجبت عن جميع أجزاء المطلوب؟','هل الأفكار واضحة ومترابطة؟','هل المفردات مناسبة ومتنوعة؟','هل القواعد والإملاء والترقيم دقيقة؟']:['هل أجبت عن السؤال مباشرة؟','هل رتبت الأفكار وقدمت أمثلة؟','هل كان النطق واضحاً والطلاقة مناسبة؟','هل استخدمت مفردات وقواعد مناسبة للمستوى؟'];
+  html+='<h4>قيّم أداءك من 0 إلى 2 لكل معيار</h4><p class="note">0 = يحتاج إلى تحسين · 1 = مقبول · 2 = جيد جداً. يجب أن تحقق 6 من 8 على الأقل لاجتياز الاختبار.</p>';
+  criteria.forEach((c,i)=>{const val=prior&&prior.rubric?prior.rubric[i]:'';html+='<label style="display:block;margin:12px 0">'+c+'<select data-skill-rubric="'+i+'" style="display:block;width:100%;margin-top:6px;padding:10px;border-radius:10px;background:var(--paper);color:var(--ink);border:1px solid var(--line)"><option value="">اختر الدرجة</option><option value="0" '+(val===0?'selected':'')+'>0 — يحتاج إلى تحسين</option><option value="1" '+(val===1?'selected':'')+'>1 — مقبول</option><option value="2" '+(val===2?'selected':'')+'>2 — جيد جداً</option></select></label>';});
+  html+='<button type="button" class="btn" data-skill-action="rubric">احسب التقييم واحفظ النتيجة</button>';
+ }
+ html+='<div id="skillFeedback" aria-live="polite"></div></div>';
+ html+='<h3>ملخص اختبارات '+skillUI.level+'</h3><div class="ul">'+SKILL_KEYS.map(k=>{const r=old[examKey(skillUI.level,k)];return '<div class="prow"><div class="top"><b>'+SKILL_NAMES[k]+'</b><span>'+(r?(r.score+'/'+r.max+' · '+(r.passed?'مجتاز':'لم يجتز')):'لم يبدأ')+'</span></div></div>';}).join('')+'</div>';
+ page.innerHTML=html;
+ const draft=$('#skillDraft');if(draft){const wc=()=>$('#skillWordCount').textContent='عدد الكلمات: '+(draft.value.trim()?draft.value.trim().split(/\s+/).length:0);wc();draft.addEventListener('input',wc);}
+}
+function showSkillFeedback(msg){const el=$('#skillFeedback');if(el)el.innerHTML=msg;}
+function markQuestions(){const d=SKILL_BANK[skillUI.level][skillUI.skill],answers=[],missing=[];let score=0;
+ d.q.forEach((q,i)=>{const a=document.querySelector('input[name="skillq'+i+'"]:checked');if(!a)missing.push(i);answers[i]=a?Number(a.value):null;if(a&&Number(a.value)===q[2])score++;});
+ if(missing.length){showSkillFeedback('<p class="note">أجب عن جميع الأسئلة أولاً. المتبقي: '+missing.length+'.</p>');return;}
+ const max=d.q.length,passed=score/max>=.7;record(skillUI.level,skillUI.skill,{score,max,passed,answers});
+ showSkillFeedback('<div class="conv-answer"><h4>نتيجتك: '+score+' / '+max+' ('+Math.round(score/max*100)+'%)</h4><b>'+(passed?'✓ اجتزت الاختبار':'لم تصل إلى 70%؛ راجع الإجابات ثم أعد المحاولة')+'</b>'+d.q.map((q,i)=>'<p>'+(i+1)+'. '+(answers[i]===q[2]?'✓':'✗')+' الإجابة الصحيحة: <b>'+esc7(q[1][q[2]])+'</b></p>').join('')+'</div>');
+}
+function markRubric(){const d=SKILL_BANK[skillUI.level][skillUI.skill],sels=Array.from(document.querySelectorAll('[data-skill-rubric]')),rubric=sels.map(x=>x.value===''?null:Number(x.value));if(rubric.some(x=>x===null)){showSkillFeedback('<p class="note">اختر درجة لكل معيار قبل الحفظ.</p>');return;}
+ const score=rubric.reduce((a,b)=>a+b,0),max=8,passed=score/max>=.7,response=skillUI.skill==='writing'?($('#skillDraft').value||'').trim():undefined;
+ if(skillUI.skill==='writing'&&!response){showSkillFeedback('<p class="note">اكتب إجابتك أولاً، ثم قيّمها.</p>');return;}
+ const words=response?response.split(/\s+/).filter(Boolean).length:undefined;
+ record(skillUI.level,skillUI.skill,{score,max,passed,rubric,...(response!==undefined?{response,words}:{})});
+ showSkillFeedback('<div class="conv-answer"><h4>التقييم الذاتي: '+score+' / '+max+'</h4><b>'+(passed?'✓ اجتزت وفق تقييمك الذاتي':'تحتاج إلى مراجعة وتحسين')+'</b>'+(words!==undefined?'<p>عدد الكلمات: '+words+' · الحد المقترح: '+d.min+'</p>':'')+'<p class="note">هذا تقييم ذاتي وليس تصحيحاً بشرياً أو شهادة CEFR معتمدة.</p></div>');
+}
+function renderAudit(page){
+ const ids=LESSONS.map(x=>String(x.id)),idSet=new Set(ids),dupIds=ids.filter((x,i)=>ids.indexOf(x)!==i);
+ const counts=SKILL_LEVELS.map(lv=>({lv,n:LESSONS.filter(x=>x.level===lv).length}));
+ const expected={A1:24,A2:28,B1:26,B2:24,C1:24,C2:24};
+ const pairs=[['l5','l501','Food & drink'],['l12','l512','Directions'],['l527','l112','Used to'],['l526','l109','At the airport'],['l205','l802','Future perfect & continuous'],['l7','l506','Daily routine']];
+ const byIdAudit=new Map(LESSONS.map(x=>[String(x.id),x]));
+ let html='<div class="crumb"><button class="lnk" type="button" data-skill-action="back">← الاختبارات</button> · المرحلة الثامنة</div><h1>تقرير تدقيق المنهج</h1><p class="note">هذا التقرير يفحص الفهرسة والعناوين ومحتوى المسارات المضافة. لا يحذف أو يغيّر أي درس.</p>';
+ html+='<div class="stats" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div class="stat"><b>'+LESSONS.length+'</b><span>إجمالي الدروس</span></div><div class="stat"><b>'+idSet.size+'</b><span>معرّفات فريدة</span></div></div>';
+ html+='<h3>توزيع الدروس</h3><div class="ul">'+counts.map(x=>'<div class="prow"><div class="top"><b>'+x.lv+'</b><span>'+x.n+' / '+expected[x.lv]+'</span></div><div class="bar1"><i style="width:'+Math.min(100,100*x.n/expected[x.lv])+'%"></i></div></div>').join('')+'</div>';
+ html+='<p class="note">'+(dupIds.length?'⚠ توجد معرّفات مكررة: '+dupIds.join('، '):'✓ لا توجد معرّفات دروس مكررة.')+'</p>';
+ html+='<h3>أزواج تحتاج مراجعة يدوية</h3><p class="note">تشابه العنوان لا يثبت أن الدرسين مكرران؛ يجب مقارنة الشرح والأمثلة والتمارين قبل اتخاذ قرار.</p><div class="ul">'+pairs.map(p=>'<div class="prow"><b>'+p[0]+' / '+p[1]+'</b><span>'+p[2]+' · '+(byIdAudit.has(p[0])&&byIdAudit.has(p[1])?'موجودان':'تحقق من المعرفات')+'</span></div>').join('')+'</div>';
+ html+='<h3>تغطية المهارات</h3><div class="ul"><div class="prow">القراءة والاستماع والكتابة: 6 أنشطة لكل مهارة (مرحلة 5)</div><div class="prow">المحادثة: 6 مواقف تفاعلية و18 جولة، والنطق: 12 تمريناً (مرحلة 6)</div><div class="prow">الاختبارات المستقلة: 24 مساراً (4 مهارات × 6 مستويات) (مرحلة 7)</div></div>';
+ html+='<h3>حالة اختبارات المهارات</h3><p class="note">'+countStatus().done+' مكتمل من 24 · '+countStatus().passed+' مجتاز من 24 على هذا الجهاز.</p>';
+ html+='<div class="conv-answer"><b>حدود التدقيق</b><ul><li>الفهرسة تكشف تكرار المعرّفات، لكنها لا تثبت التطابق الدلالي الكامل.</li><li>الأزواج الستة أعلاه تحذيرات للمراجعة وليست أحكاماً بالتكرار.</li><li>اختبارات المهارات تشخيصية قصيرة وليست اعتماداً رسمياً لشهادة CEFR.</li><li>الكتابة والمحادثة تعتمد على التقييم الذاتي؛ لا يوجد تصحيح بشري آلي.</li></ul></div>';
+ html+='<button type="button" class="btn" data-skill-action="open">افتح اختبارات المهارات</button>';
+ page.innerHTML=html;
+}
+// Extend the existing Tests page without replacing its placement or level exams.
+const oldRenderTests=renderTests;
+renderTests=function(page){oldRenderTests(page);page.append(h('h3',{},'تقييم المهارات والمنهج'));page.append(h('button',{type:'button',class:'btn',onclick:openSkills},'اختبارات المهارات المستقلة · 24 اختباراً'));page.append(h('button',{type:'button',class:'btn ghost',onclick:()=>renderAudit(page)},'تقرير تدقيق المنهج · المرحلة الثامنة'));};
+// One delegated handler; no new microphone or speech-recognition path is introduced.
+document.addEventListener('click',function(ev){const t=ev.target.closest('[data-skill-action],[data-skill-level],[data-skill-kind]');if(!t)return;
+ if(t.dataset.skillLevel){skillUI.level=t.dataset.skillLevel;renderSkillsPage($('#page'));}
+ else if(t.dataset.skillKind){skillUI.skill=t.dataset.skillKind;renderSkillsPage($('#page'));}
+ else if(t.dataset.skillAction==='back'){backToTests();}
+ else if(t.dataset.skillAction==='play'){const d=SKILL_BANK[skillUI.level].listening;try{speak(d.audio);}catch(e){showSkillFeedback('<p class="note">تعذر تشغيل الصوت على هذا الجهاز.</p>');}}
+ else if(t.dataset.skillAction==='mark'){markQuestions();}
+ else if(t.dataset.skillAction==='rubric'){markRubric();}
+ else if(t.dataset.skillAction==='open'){openSkills();}
+});
+})();
+</script>
 </body></html>
