@@ -7835,6 +7835,8 @@ function renderTests(page){
       h('small',{},d.levelPassed?'✓ اجتزت الشامل':'الشامل: لم يُجتز')));
   });
   page.append(ul);
+  // Phase 7/8 registers this optional decorator after the core UI is loaded.
+  if(window.__phase78 && typeof window.__phase78.decorateTests==='function') window.__phase78.decorateTests(page);
 }
 
 function renderSettings(page){
@@ -10631,9 +10633,12 @@ function renderAudit(page){
  html+='<button type="button" class="btn" data-skill-action="open">افتح اختبارات المهارات</button>';
  page.innerHTML=html;
 }
-// Extend the existing Tests page without replacing its placement or level exams.
-const oldRenderTests=renderTests;
-renderTests=function(page){oldRenderTests(page);page.append(h('h3',{},'تقييم المهارات والمنهج'));page.append(h('button',{type:'button',class:'btn',onclick:openSkills},'اختبارات المهارات المستقلة · 24 اختباراً'));page.append(h('button',{type:'button',class:'btn ghost',onclick:()=>renderAudit(page)},'تقرير تدقيق المنهج · المرحلة الثامنة'));};
+// Register a safe decorator for the core Tests page; renderTests is private to the Phase 2 IIFE.
+window.__phase78={decorateTests:function(page){
+ page.append(h('h3',{},'تقييم المهارات والمنهج'));
+ page.append(h('button',{type:'button',class:'btn',onclick:openSkills},'اختبارات المهارات المستقلة · 24 اختباراً'));
+ page.append(h('button',{type:'button',class:'btn ghost',onclick:()=>renderAudit(page)},'تقرير تدقيق المنهج · المرحلة الثامنة'));
+}};
 // One delegated handler; no new microphone or speech-recognition path is introduced.
 document.addEventListener('click',function(ev){const t=ev.target.closest('[data-skill-action],[data-skill-level],[data-skill-kind]');if(!t)return;
  if(t.dataset.skillLevel){skillUI.level=t.dataset.skillLevel;renderSkillsPage($('#page'));}
