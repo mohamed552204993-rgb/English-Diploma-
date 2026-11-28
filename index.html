@@ -10652,4 +10652,220 @@ document.addEventListener('click',function(ev){const t=ev.target.closest('[data-
 })();
 </script>
 <script src="./foundation-stage.js"></script>
+
+<style id="grammar-upgrade-style">
+.grx-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.grx-top h1{margin:8px 0}
+.grx-lead{color:var(--muted);line-height:1.8;margin:8px 0 16px}
+.grx-search{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);font:inherit;margin:8px 0 12px}
+.grx-levels{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 16px}
+.grx-level{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:9px 14px;font-weight:700}
+.grx-level.active{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.grx-topic-list{display:grid;gap:9px}
+.grx-topic{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:14px;border:1px solid var(--line);border-radius:13px;background:var(--paper);cursor:pointer;text-align:start}
+.grx-topic:hover{border-color:var(--accent);background:var(--paper-2)}
+.grx-topic-info{display:flex;flex-direction:column;gap:5px;min-width:0}
+.grx-topic-info strong{font-size:15px}.grx-topic-info small,.grx-muted{color:var(--muted);font-size:12px}
+.grx-topic-right{display:flex;align-items:center;gap:9px;white-space:nowrap;font-size:12px}
+.grx-score{background:var(--good-bg);color:var(--good);padding:4px 7px;border-radius:7px;font-weight:700}
+.grx-open{color:var(--accent);font-weight:700}
+.grx-kicker{color:var(--accent);font-size:13px;font-weight:700;margin-top:10px}
+.grx-ar-title{color:var(--muted);margin-top:-8px}
+.grx-open-note{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:11px;margin:12px 0;color:var(--good);font-size:13px}
+.grx-section{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;margin:12px 0}
+.grx-section h3{margin:0 0 10px;font-size:17px}
+.grx-paragraph{line-height:1.9;margin:0}
+.grx-list{padding-inline-start:22px;margin:0;line-height:1.9}.grx-list li{margin:5px 0}
+.grx-examples,.grx-errors{display:grid;gap:10px}
+.grx-example{display:flex;gap:10px;align-items:flex-start;padding:10px;border-radius:10px;background:var(--paper-2)}
+.grx-num{background:var(--accent);color:var(--on-accent);border-radius:50%;width:25px;height:25px;display:grid;place-items:center;flex:none;font-size:12px}
+.grx-en{direction:ltr;text-align:left;font-weight:700;line-height:1.6}.grx-ar{color:var(--muted);margin-top:3px}
+.grx-error{padding:11px;border:1px solid var(--line);border-radius:10px}
+.grx-wrong{color:var(--bad);direction:ltr;text-align:left;font-weight:600}
+.grx-correct{color:var(--good);direction:ltr;text-align:left;font-weight:700;margin-top:5px}
+.grx-why{margin:6px 0 0;line-height:1.7;font-size:13px}
+.grx-test-callout{padding:16px;border:1px solid var(--accent);border-radius:14px;margin:16px 0;background:var(--paper-2)}
+.grx-test-callout p{color:var(--muted);line-height:1.7}
+.grx-progress{height:8px;background:var(--paper-2);border-radius:20px;overflow:hidden;margin:12px 0 5px}
+.grx-progress-bar{height:100%;background:var(--accent);border-radius:20px;transition:width .2s}
+.grx-qcard{border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:13px;margin:12px 0}
+.grx-qhead{font-size:12px;color:var(--accent);font-weight:700;margin-bottom:9px}
+.grx-qprompt{font-size:16px;line-height:1.7;margin-bottom:10px;font-weight:600}
+.grx-option{display:block;width:100%;text-align:start;padding:11px;border:1px solid var(--line);border-radius:10px;background:var(--paper-2);color:var(--ink);margin:6px 0;font:inherit;cursor:pointer}
+.grx-option:disabled,.grx-word:disabled{opacity:.6}
+.grx-actions{display:flex;gap:8px;flex-wrap:wrap}
+.grx-word-tray{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.grx-word{border:1px solid var(--line);background:var(--paper-2);color:var(--ink);border-radius:9px;padding:8px 10px;font:inherit;cursor:pointer}
+.grx-built{min-height:44px;border:1px dashed var(--accent);border-radius:10px;padding:10px;direction:ltr;text-align:left;margin:10px 0;line-height:1.7}
+.grx-translation{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--paper-2);color:var(--ink);padding:11px;font:inherit;line-height:1.7}
+.grx-feedback{border-radius:10px;padding:10px;margin-top:10px;font-size:13px;line-height:1.7}
+.grx-feedback.good{background:var(--good-bg);color:var(--good)}.grx-feedback.bad{background:var(--bad-bg);color:var(--bad)}
+.grx-model{font-weight:700;margin-top:4px;direction:auto}
+.grx-result{background:var(--paper-2);border:1px solid var(--accent);border-radius:14px;padding:16px;text-align:center;margin:18px 0}
+.grx-result h2{margin:0 0 6px}.grx-result p{line-height:1.7}
+@media(max-width:480px){.grx-topic{padding:11px}.grx-topic-right{gap:5px}.grx-open{font-size:11px}.grx-topic-info strong{font-size:14px}}
+</style>
+
+
+<script id="p16">
+/* Grammar encyclopedia upgrade: detailed explanations + open lessons + 15-question mixed tests */
+(function(){
+'use strict';
+const G=window.__G||[];
+const D={"g-a1-1":{"uses":["الهوية والمهنة: She is a nurse.","الحالة والصفة: I am tired.","المكان والوقت والعمر: They are at home; It is five o’clock; I am 25."],"form":["I → am؛ he/she/it → is؛ you/we/they → are.","النفي: be + not. السؤال: قدّم am/is/are قبل الفاعل.","الإجابة القصيرة تكرر be: Yes, she is / No, she isn't."],"errors":[["She are happy.","She is happy.","she مفرد غائب؛ لذلك نستخدم is."],["I don't am ready.","I am not ready.","be ينفي بـ not مباشرة، ولا يحتاج do."],["Do you are a student?","Are you a student?","مع be نقدّم be في السؤال ولا نستخدم do."]],"extra":["Are we late?","هل نحن متأخرون؟"]},"g-a1-2":{"uses":["العادات والروتين: I walk to work every day.","الحقائق العامة: Water boils at 100°C at sea level.","الحالات والآراء: She likes coffee; I know the answer."],"form":["I/you/we/they + base verb؛ he/she/it + s/es.","النفي: don't/doesn't + base verb. بعد doesn't لا نضيف s للفعل.","السؤال: Do/Does + subject + base verb؟"],"errors":[["He work in a bank.","He works in a bank.","مع he/she/it نضيف s في الإثبات."],["She doesn't likes tea.","She doesn't like tea.","doesn't تحمل علامة المفرد، والفعل بعدها أساسي."],["Does he works here?","Does he work here?","بعد does نستخدم الفعل الأساسي دون s."]],"extra":["My father drives to work.","يقود أبي السيارة إلى العمل."]},"g-a1-3":{"uses":["وجود مفرد أو اسم غير معدود: There is a shop; There is water.","وجود جمع: There are two shops.","السؤال والنفي عن الوجود: Is there...? / There aren't..."],"form":["There is + مفرد أو غير معدود؛ There are + جمع.","الماضي: There was / There were. المستقبل: There will be.","في السؤال نقدّم is/are؛ لا نستخدم do معها."],"errors":[["There are a problem.","There is a problem.","problem مفرد، لذلك نستخدم is."],["There is two cars.","There are two cars.","two cars جمع، لذلك نستخدم are."],["Do there have a bank?","Is there a bank?","للسؤال عن الوجود نستخدم Is/Are there."]],"extra":["There are some flowers in the garden.","توجد بعض الزهور في الحديقة."]},"g-a1-4":{"uses":["a/an لاسم مفرد معدود غير محدد أو عند ذكره أول مرة.","the لشيء معروف أو محدد أو سبق ذكره.","غالباً بلا أداة عند التعميم عن الجمع أو غير المعدود: Books are useful; Water is important."],"form":["a قبل صوت ساكن، وan قبل صوت متحرك؛ الحكم على الصوت لا الحرف.","the مع المفرد والجمع والمعدود وغير المعدود إذا كان محدداً.","لا نستخدم a/an مع الجمع أو غير المعدود مثل information وadvice."],"errors":[["She is a engineer.","She is an engineer.","engineer يبدأ بصوت متحرك."],["I need an information.","I need some information.","information غير معدود."],["I saw a moon.","I saw the moon.","القمر معروف وفريد في السياق المعتاد."]],"extra":["He is an honest man.","إنه رجل صادق."]},"g-a1-5":{"uses":["الملكية: I have a car / I've got a car.","العلاقات والصفات: She has two brothers; He's got blue eyes.","الأنشطة: have breakfast / have a shower (لا نستعمل have got عادة)."],"form":["have مع I/you/we/they؛ has مع he/she/it.","have got: have/has + got؛ السؤال Have/Has + subject + got?","مع have العادي: Do/Does + subject + have؛ النفي don't/doesn't have."],"errors":[["Does she has a car?","Does she have a car?","بعد does نستخدم have الأساسية."],["She have got a phone.","She has got a phone.","مع she نستخدم has."],["I've got breakfast at seven.","I have breakfast at seven.","have got لا يستخدم عادة للأنشطة اليومية."]],"extra":["Have they got a new house?","هل لديهم منزل جديد؟"]},"g-a1-6":{"uses":["صفات الملكية قبل الاسم: my, your, his, her, its, our, their.","ضمائر الملكية تحل محل الاسم: mine, yours, his, hers, ours, theirs.","'s للمالك: Sara's bag؛ ولجمع منتهٍ بـ s نضيف apostrophe: students' room."],"form":["my book لا mine book؛ أما This book is mine.","its ملكية، وit's اختصار it is أو it has.","جمع غير منتهٍ بـ s: children's toys."],"errors":[["This is mine book.","This is my book.","قبل الاسم نستخدم صفة ملكية."],["The dog wagged it's tail.","The dog wagged its tail.","its ملكية بلا فاصلة؛ it's اختصار."],["This bag is her.","This bag is hers.","بعد be دون اسم نستخدم ضمير الملكية."]],"extra":["These seats are ours.","هذه المقاعد لنا."]},"g-a1-7":{"uses":["Yes/No: Do you work? / Are you ready?","أسئلة المعلومات: Where do you live? / Why did he leave?","سؤال الفاعل: Who called you? لا يحتاج do غالباً."],"form":["مع الفعل العادي: Do/Does أو Did + subject + base verb.","مع be/modal نقدّم المساعد: Is she...? Can you...?","السؤال غير المباشر يعود إلى ترتيب الجملة: where the station is."],"errors":[["Where you live?","Where do you live?","نحتاج do مع الفعل العادي في السؤال."],["Does he works here?","Does he work here?","بعد does يأتي الفعل الأساسي."],["Why did she left?","Why did she leave?","بعد did نستخدم المصدر الأساسي."]],"extra":["How often do you study English?","كم مرة تدرس الإنجليزية؟"]},"g-a1-8":{"uses":["الزمن: in للشهر/السنة؛ on لليوم/التاريخ؛ at للساعة المحددة.","المكان: in داخل مساحة؛ on على سطح؛ at نقطة أو موقع محدد.","تراكيب ثابتة: at home, at work, on a bus, in a car."],"form":["in July / in 2026 / in the morning.","on Monday / on 5 May؛ at 7:30 / at night.","arrive in a city/country؛ arrive at a specific place؛ arrive home بلا حرف جر."],"errors":[["I was born on 2001.","I was born in 2001.","in مع السنة."],["The class starts in 9 o'clock.","The class starts at 9 o'clock.","at مع الساعة."],["She arrived to London.","She arrived in London.","نستخدم arrive in مع المدن والدول."]],"extra":["The picture is on the wall.","الصورة على الحائط."]},"g-a1-9":{"uses":["القدرة والمهارة: I can swim.","السماح أو الطلب: Can I leave? / Can you help me?","الاحتمال العام: It can be very cold here."],"form":["can/can't + base verb دون to أو s.","السؤال: Can + subject + base verb? والنفي can't/cannot.","الماضي للقدرة العامة: could؛ وللقدرة في موقف محدد غالباً was/were able to."],"errors":[["She can to drive.","She can drive.","بعد can يأتي الفعل الأساسي دون to."],["He cans swim.","He can swim.","الأفعال الناقصة لا تأخذ s مع he/she/it."],["Do you can help me?","Can you help me?","نقدّم can في السؤال ولا نستخدم do."]],"extra":["My little brother can read English.","يستطيع أخي الصغير قراءة الإنجليزية."]},"g-a2-1":{"uses":["حدث انتهى في وقت ماضٍ محدد: I visited Riyadh yesterday.","سلسلة أحداث ماضية: He opened the door and sat down.","عادة قديمة: We played outside every evening."],"form":["الأفعال المنتظمة + ed؛ والشاذة لها V2 خاصة.","النفي: didn't + base verb؛ السؤال: Did + subject + base verb?","be في الماضي: was مع I/he/she/it وwere مع you/we/they."],"errors":[["He didn't went home.","He didn't go home.","بعد didn't نستخدم المصدر."],["Did she called you?","Did she call you?","بعد Did لا نضع صيغة الماضي."],["I were tired.","I was tired.","مع I نستخدم was."]],"extra":["They bought a new car last week.","اشتروا سيارة جديدة الأسبوع الماضي."]},"g-a2-2":{"uses":["مقارنة صفتين: taller than؛ more useful than.","المساواة: as + adjective + as؛ والنفي not as/so...as.","الشواذ: good → better؛ bad → worse."],"form":["الصفات القصيرة غالباً + er؛ big → bigger؛ happy → happier.","الصفات الطويلة غالباً more + adjective.","بعد المقارنة نستخدم than، لا then."],"errors":[["This is more cheaper.","This is cheaper.","لا نجمع more مع -er."],["He is taller then me.","He is taller than me.","than للمقارنة؛ then تعني ثم."],["gooder","better","good صفة شاذة ومقارنتها better."]],"extra":["This road is safer than the old road.","هذا الطريق أكثر أماناً من الطريق القديم."]},"g-a2-3":{"uses":["will لقرار لحظي أو وعد أو عرض: I'll help you.","going to لخطة مقررة مسبقاً: I'm going to study tonight.","going to لتوقع بدليل حاضر؛ will لتوقع أو رأي عام."],"form":["will + base verb؛ won't للنفي؛ Will + subject + base verb?","am/is/are + going to + base verb.","لا نضع to بعد will ولا نحذف be قبل going to."],"errors":[["She will to call.","She will call.","بعد will يأتي الفعل الأساسي مباشرة."],["They going to travel.","They are going to travel.","نحتاج be قبل going to."],["I am go to study.","I am going to study.","الصيغة be + going to + base verb."]],"extra":["Look at those clouds; it is going to rain.","انظر إلى تلك الغيوم؛ يبدو أنها ستمطر."]},"g-a2-4":{"uses":["حدث يجري الآن: She is talking.","وضع مؤقت أو تغير تدريجي: I'm staying here this week; Prices are rising.","ترتيب مستقبلي مؤكد: We're meeting on Friday."],"form":["am/is/are + verb-ing.","النفي: am not/isn't/aren't + ing؛ السؤال: Am/Is/Are + subject + ing?","make → making؛ run → running؛ lie → lying."],"errors":[["He is work now.","He is working now.","بعد be نستخدم ing."],["They are play football.","They are playing football.","نضيف ing للفعل."],["I am knowing the answer.","I know the answer.","know فعل حالة لا يستخدم عادة في المستمر."]],"extra":["The children are sleeping at the moment.","الأطفال نائمون في هذه اللحظة."]},"g-a2-5":{"uses":["حدث جارٍ في لحظة ماضية: At eight, I was studying.","حدث طويل قطعه قصير: I was cooking when he called.","حدثان متزامنان: While I was reading, she was writing."],"form":["was/were + verb-ing.","was مع I/he/she/it؛ were مع you/we/they.","when غالباً مع الحدث القصير، وwhile مع الخلفية المستمرة."],"errors":[["I was sleep when you called.","I was sleeping when you called.","بعد was نستخدم ing."],["They was watching TV.","They were watching TV.","they تأخذ were."],["What you were doing?","What were you doing?","نقدّم was/were قبل الفاعل في السؤال."]],"extra":["We were driving when it started to rain.","كنا نقود عندما بدأ المطر."]},"g-a2-6":{"uses":["خبرة دون وقت محدد: Have you ever visited London?","فترة بدأت في الماضي وما زالت: for five years / since 2020.","نتيجة حاضرة: He has lost his keys (ما زالت مفقودة)."],"form":["have/has + V3.","since + نقطة بداية؛ for + مدة.","ever/never للخبرة؛ already غالباً بالإثبات؛ yet غالباً بالسؤال والنفي."],"errors":[["I have lived here since five years.","I have lived here for five years.","for للمدة وsince لنقطة البداية."],["She has went home.","She has gone home.","بعد has نستخدم V3."],["I have seen him yesterday.","I saw him yesterday.","yesterday وقت ماضٍ منتهٍ."]],"extra":["Have you ever tried Arabic coffee?","هل سبق أن جربت القهوة العربية؟"]},"g-a2-7":{"uses":["many مع الجمع المعدود؛ much مع غير المعدود.","some غالباً بالإثبات والعروض؛ any غالباً بالنفي والأسئلة.","a lot of مع المعدود وغير المعدود؛ few/a few وlittle/a little يختلفان في الإيحاء."],"form":["many books؛ much water؛ some apples؛ any milk.","a few = بعض موجود؛ few = قليل جداً؛ a little = كمية صغيرة موجودة؛ little = بالكاد كمية.","الاسم غير المعدود يبقى مفرداً في المطابقة."],"errors":[["There are much cars.","There are many cars.","cars جمع معدود."],["I need an advice.","I need some advice.","advice غير معدود."],["How many water?","How much water?","water غير معدود."]],"extra":["There isn't much sugar in the tea.","لا يوجد سكر كثير في الشاي."]},"g-b1-1":{"uses":["Past Simple لوقت ماضٍ منتهٍ ومحدد: I saw her yesterday.","Present Perfect لخبرة حتى الآن دون تحديد وقت: I have visited Oman.","Present Perfect لنتيجة حاضرة أو مدة مستمرة حتى الآن."],"form":["Past Simple: subject + V2؛ السؤال والنفي بـ did/didn't + V1.","Present Perfect: have/has + V3.","لا نستخدم present perfect عادة مع yesterday أو in 2019."],"errors":[["I have seen him yesterday.","I saw him yesterday.","yesterday وقت ماضٍ منتهٍ."],["She has went home.","She has gone home.","بعد has نستخدم V3."],["Did you ever visit London? (خبرة حتى الآن)","Have you ever visited London?","السؤال عن خبرة حياتية دون وقت محدد يستخدم غالباً present perfect."]],"extra":["We have just finished the project.","لقد انتهينا للتو من المشروع."]},"g-b1-2":{"uses":["احتمال واقعي في المستقبل: If it rains, we'll stay home.","وعد أو عرض: If you need help, I'll call you.","تعليمات ونتائج ممكنة: If you see him, tell him."],"form":["If + present simple, will + base verb.","يمكن استخدام can/may/might أو الأمر في النتيجة.","إذا جاءت if في البداية نضع فاصلة؛ وإذا جاءت في الوسط غالباً لا نحتاج فاصلة."],"errors":[["If it will rain, we will stay home.","If it rains, we will stay home.","بعد if نستخدم المضارع البسيط في الشرط الأول."],["If she study, she will pass.","If she studies, she will pass.","مع she نضيف s."],["If I see him, I will told him.","If I see him, I will tell him.","بعد will يأتي المصدر."]],"extra":["If you hurry, you will catch the bus.","إذا أسرعت فستلحق بالحافلة."]},"g-b1-3":{"uses":["must للإلزام القوي أو الاستنتاج؛ have to للضرورة؛ should للنصيحة.","mustn't = ممنوع؛ don't have to = ليس ضرورياً.","can/could/may/might للتعبير عن القدرة أو الإذن أو الاحتمال بحسب السياق."],"form":["must/should + base verb بلا to أو s.","have to يتصرف: has to, had to, will have to.","Do/Does + subject + have to? للسؤال عن الضرورة."],"errors":[["You must to leave.","You must leave.","بعد must لا نستخدم to."],["You don't have to smoke here. (بمعنى ممنوع)","You mustn't smoke here.","mustn't تعني ممنوع، وdon't have to تعني غير ملزم."],["She shoulds study.","She should study.","modal لا يأخذ s."]],"extra":["You have to show your passport at the airport.","يجب أن تُظهر جواز سفرك في المطار."]},"g-b1-4":{"uses":["who للأشخاص؛ which للأشياء؛ that لكليهما في الجمل المحددة غالباً.","where للمكان؛ when للوقت؛ whose للملكية.","Defining تحدد الاسم بلا فواصل؛ non-defining تضيف معلومة بين فواصل."],"form":["ضمير الوصل يأتي بعد الاسم الذي يصفه.","لا نستخدم that في الجملة غير المحددة بين الفواصل.","يمكن حذف ضمير الوصل إذا كان مفعولاً به في defining clause."],"errors":[["My sister, that lives in Jeddah, is a nurse.","My sister, who lives in Jeddah, is a nurse.","في الجملة غير المحددة لا نستخدم that."],["The person which helped me","The person who helped me","who للأشخاص."],["The book who I bought","The book which/that I bought","which/that للأشياء."]],"extra":["This is the restaurant where we first met.","هذا هو المطعم الذي التقينا فيه أول مرة."]},"g-b1-5":{"uses":["حدث وقع قبل حدث آخر في الماضي: The train had left before we arrived.","سبب أو خلفية لنتيجة ماضية: She was upset because she had lost her phone.","خبرة أو مدة قبل نقطة مرجعية ماضية."],"form":["had + V3 مع جميع الفواعل.","النفي hadn't + V3؛ السؤال Had + subject + V3?","الحدث الأسبق غالباً past perfect واللاحق past simple."],"errors":[["When I arrived, the bus has left.","When I arrived, the bus had left.","الحدث الأسبق من نقطة ماضية يأخذ past perfect."],["She had went home.","She had gone home.","بعد had نستخدم V3."],["Did you had finished?","Had you finished?","السؤال يبدأ بـ Had، لا did."]],"extra":["By the time we arrived, the film had started.","بحلول وقت وصولنا كان الفيلم قد بدأ."]},"g-b1-6":{"uses":["Gerund بعد enjoy/avoid/finish/suggest: enjoy reading.","To-infinitive بعد want/decide/hope/plan: decide to leave.","بعد حرف الجر نستخدم -ing: interested in learning."],"form":["verb + ing؛ أو verb + to + base verb حسب الفعل.","بعض الأفعال تقبل الاثنين مع اختلاف المعنى: stop doing / stop to do.","بعد modal يأتي المصدر دون to: can swim."],"errors":[["I enjoy to read.","I enjoy reading.","enjoy يتبعه gerund."],["She decided going home.","She decided to go home.","decide يتبعه to-infinitive."],["He is good at to cook.","He is good at cooking.","بعد حرف الجر at نستخدم ing."]],"extra":["They finished cleaning the kitchen.","أنهوا تنظيف المطبخ."]},"g-b1-7":{"uses":["نشاط بدأ في الماضي واستمر حتى الآن: I have been studying for two hours.","نشاط انتهى للتو وأثره ظاهر: She is tired because she has been running.","التركيز على المدة أو النشاط لا النتيجة فقط."],"form":["have/has + been + verb-ing.","since لنقطة بداية؛ for لمدة.","مع أفعال الحالة مثل know نستخدم غالباً present perfect البسيط."],"errors":[["She has been study all day.","She has been studying all day.","بعد been نستخدم ing."],["I am been waiting.","I have been waiting.","التركيب have/has been + ing."],["I have been knowing him for years.","I have known him for years.","know فعل حالة غالباً."]],"extra":["It has been raining since dawn.","تمطر منذ الفجر."]},"g-b2-1":{"uses":["الفاعل مجهول: My bike was stolen.","الفاعل غير مهم: The road is being repaired.","التركيز على الإجراء أو النتيجة في التقارير: The samples were tested."],"form":["الصيغة العامة: be + V3؛ ويتغير be حسب الزمن.","Present: am/is/are + V3؛ past: was/were + V3.","Perfect passive: has/have been + V3؛ future: will be + V3."],"errors":[["The room cleaned every day.","The room is cleaned every day.","المبني للمجهول يحتاج be."],["The car was stole.","The car was stolen.","بعد be نستخدم V3."],["The report has wrote.","The report has been written.","present perfect passive = has/have been + V3."]],"extra":["The results will be announced tomorrow.","ستُعلن النتائج غداً."]},"g-b2-2":{"uses":["نقل خبر: She said that she was tired.","نقل سؤال: He asked where I lived.","نقل أمر: The teacher told us to sit down."],"form":["say + clause؛ tell + person + clause.","عند فعل نقل ماضٍ يحدث backshift غالباً: present→past؛ will→would.","السؤال المنقول بترتيب خبري؛ الأمر told/asked + object + to-infinitive."],"errors":[["She said me that she was ill.","She told me that she was ill. / She said that she was ill.","say لا يأتي مباشرة مع مفعول شخص؛ tell يحتاج مفعولاً."],["He asked where did I live.","He asked where I lived.","السؤال المنقول لا يستخدم ترتيب السؤال."],["She told to wait.","She told me to wait.","tell يحتاج الشخص قبل to-infinitive."]],"extra":["He said that he had lost his keys.","قال إنه أضاع مفاتيحه."]},"g-b2-3":{"uses":["موقف غير واقعي أو بعيد الاحتمال الآن أو مستقبلاً: If I had more time, I'd travel.","نصيحة: If I were you, I'd apologise.","احتمال بعيد: If they offered me the job, I might accept."],"form":["If + past simple, would + base verb.","يمكن استخدام could/might لتغيير معنى القدرة أو الاحتمال.","were شائع مع جميع الفواعل في الافتراض الرسمي: If I were you."],"errors":[["If I will have time, I would help.","If I had time, I would help.","جملة if في الشرط الثاني تأخذ past simple."],["If she was here... (أسلوب افتراضي رسمي)","If she were here...","were هو الاختيار القياسي الرسمي."],["If I had money, I will travel.","If I had money, I would travel.","النتيجة would + base verb."]],"extra":["If we lived closer, we would visit more often.","لو كنا نسكن أقرب لزرنا بعضنا أكثر."]},"g-b2-4":{"uses":["used to للعادات والحالات الماضية: I used to live here.","would للأفعال المتكررة في الماضي ضمن سياق واضح.","be used to = معتاد على + اسم/ing؛ get used to = يعتاد تدريجياً."],"form":["used to + base verb.","النفي didn't use to؛ السؤال Did you use to...?","would + base verb للعادات، وليس عادة للحالات مثل know/live/own."],"errors":[["I didn't used to smoke.","I didn't use to smoke.","بعد didn't نكتب use دون d."],["I would know him when I was young.","I used to know him when I was young.","would لا يستخدم عادة للحالات الماضية."],["I am use to noise.","I am used to noise.","be used to يحتاج used."]],"extra":["She is getting used to driving on the left.","هي تعتاد القيادة على اليسار."]},"g-b2-5":{"uses":["must have + V3 لاستنتاج قوي عن الماضي.","might/may/could have + V3 لاحتمال ماضٍ.","should have + V3 لشيء كان ينبغي فعله؛ can't have لاستنتاج الاستحالة."],"form":["modal + have + V3.","must have هنا استنتاج، وليس إلزاماً ماضياً.","shouldn't have + V3 لوم على فعل حدث؛ shouldn't + base verb نصيحة للحاضر/المستقبل."],"errors":[["He must has forgotten.","He must have forgotten.","بعد modal نستخدم have الأساسية."],["You should went earlier.","You should have gone earlier.","modal perfect = modal + have + V3."],["She might have went home.","She might have gone home.","بعد have نستخدم V3."]],"extra":["They could have taken a taxi.","كان بإمكانهم أن يستقلوا سيارة أجرة."]},"g-c1-1":{"uses":["الشرط الثالث يتخيل نتيجة مختلفة في الماضي: If I had left earlier, I would have caught the train.","المختلط: شرط ماضٍ ونتيجة حاضرة: If I had slept, I wouldn't be tired now.","أو شرط حاضر ونتيجة ماضية: If I were more careful, I wouldn't have made that mistake."],"form":["Third: If + past perfect, would have + V3.","Mixed past→present: If + past perfect, would + base verb.","Mixed present→past: If + past simple, would have + V3."],"errors":[["If I would have known, I would have called.","If I had known, I would have called.","في if للشرط الثالث نستخدم past perfect."],["If he had studied, he would passed.","If he had studied, he would have passed.","بعد would نحتاج have ثم V3."],["If I had a car yesterday, I would visit you.","If I had had a car yesterday, I would have visited you.","شرط ماضٍ يحتاج past perfect والنتيجة would have + V3."]],"extra":["If they had booked earlier, they would have paid less.","لو حجزوا أبكر لدفعوا أقل."]},"g-c1-2":{"uses":["بعد تعبير سلبي في البداية: Never have I seen...","بعد Only + عبارة: Only then did I understand.","للتأكيد الرسمي: Not only did she apologise, but she also offered a refund."],"form":["إذا وجد auxiliary/modal نقدّمه قبل الفاعل.","إذا لم يوجد مساعد نستخدم do/does/did + subject + base verb.","بعد Only when/after/if تبقى الجملة الفرعية غالباً بترتيبها الطبيعي، والقلب في الرئيسية."],"errors":[["Never I have seen this.","Never have I seen this.","بعد Never في البداية يتقدم الفعل المساعد."],["Only then she understood.","Only then did she understand.","نستخدم did للقلب في الماضي ثم المصدر."],["Rarely he complains.","Rarely does he complain.","نستخدم does ثم المصدر مع he."]],"extra":["Not until midnight did they arrive.","لم يصلوا إلا عند منتصف الليل."]},"g-c1-3":{"uses":["wish + past simple لحاضر مخالف: I wish I had more time.","wish + past perfect للندم على الماضي: I wish I had studied.","wish + would لتمني تغيير سلوك مزعج: I wish he would listen."],"form":["حاضر غير حقيقي: wish + past simple؛ be غالباً were.","ندم ماضٍ: wish + had + V3.","wish + would + base verb لسلوك أو تغيير نريده من الخارج؛ could للقدرة."],"errors":[["I wish I have more money.","I wish I had more money.","نتمنى واقعاً حاضراً مخالفاً بـ past simple."],["I wish I studied yesterday.","I wish I had studied yesterday.","الندم على الماضي يحتاج past perfect."],["I wish I would be taller.","I wish I were taller.","لا نستخدم wish + would عادة لصفة تخص المتكلم."]],"extra":["If only I could speak Spanish.","ليتني أستطيع التحدث بالإسبانية."]},"g-c1-4":{"uses":["-ing عندما يكون الفاعل هو من يقوم بالفعل: Feeling tired, she went home.","V3 عندما يتلقى الفاعل الفعل: Built in 1890, the house is a museum.","having + V3 لحدث اكتمل قبل الفعل الرئيسي."],"form":["Present participle: verb-ing.","Past participle: V3، غالباً بمعنى passive أو حالة.","Perfect participle: having + V3؛ ويجب وضوح الفاعل المفهوم."],"errors":[["Walking to work, the rain started.","Walking to work, I got caught in the rain.","الجملة الأولى تجعل المطر كأنه يمشي؛ يجب تطابق الفاعل."],["Having finish the task, she left.","Having finished the task, she left.","بعد having نستخدم V3."],["The window breaking by the storm...","The window broken by the storm...","المعنى مبني للمجهول، فنستخدم V3."]],"extra":["Having completed the course, he applied for a job.","بعد أن أكمل الدورة تقدم لوظيفة."]},"g-c2-1":{"uses":["It-cleft لتأكيد شخص أو شيء أو وقت: It was Sara who found the key.","What-cleft: What I need is a quiet place.","All-cleft: All I want is an explanation."],"form":["It + be + focused element + who/that clause.","who للأشخاص وthat للأشياء غالباً؛ ويتوافق be مع الزمن.","What-clause + be + focused information."],"errors":[["It was yesterday when we met.","It was yesterday that we met.","في it-cleft نستخدم that غالباً مع الوقت."],["What I want it is a break.","What I want is a break.","لا نكرر it بعد جملة what."],["It is Sara which called.","It was Sara who called.","who للأشخاص، والزمن يوافق السياق."]],"extra":["It was the red key that opened the door.","المفتاح الأحمر هو الذي فتح الباب."]},"g-c2-2":{"uses":["بعد suggest/recommend/insist/demand/request: I suggest that he apply.","بعد تعبيرات الضرورة: It is essential that she be informed.","صيغة رسمية، ويشيع أيضاً should + base verb في الإنجليزية البريطانية."],"form":["verb + that + subject + base verb دون s.","مع be نستخدم be لجميع الفواعل: that she be.","النفي: that he not attend؛ أو should not attend."],"errors":[["I suggest that he speaks.","I suggest that he speak.","subjunctive يأخذ المصدر بلا s."],["They demanded that she is informed.","They demanded that she be informed.","نستخدم be في subjunctive."],["The manager insisted that he doesn't leave.","The manager insisted that he not leave.","النفي not + base verb."]],"extra":["It is important that every student be ready.","من المهم أن يكون كل طالب مستعداً."]},"g-c2-3":{"uses":["Had I known... = If I had known...","Were she to accept... = If she were to accept...","Should you need help... = If you should need help..."],"form":["Had + subject + V3 للشرط الثالث.","Were + subject + to + base verb لافتراض رسمي.","Should + subject + base verb لشرط محتمل رسمي."],"errors":[["Had I would known...","Had I known...","بعد Had يأتي الفاعل ثم V3 مباشرة."],["Were she accepts...","Were she to accept...","بعد Were نستخدم to + base verb في هذا النمط."],["Should you will need help...","Should you need help...","بعد Should يأتي المصدر دون will."]],"extra":["Should you have any questions, contact us.","إذا كانت لديك أي أسئلة فتواصل معنا."]},"g-c2-4":{"uses":["may/might/could للاحتمال؛ seem/appear لتخفيف الجزم.","suggest/indicate/tend to لعرض استنتاج بحذر.","It is likely that... / There is limited evidence that..."],"form":["اختَر أداة التحوّط بحسب قوة الدليل، لا لمجرد جعل العبارة أطول.","may/might/could + base verb؛ ربما + فعل.","يمكن تقييد الادعاء بعبارات: in some cases, to some extent, based on current evidence."],"errors":[["The results prove that it always works. (والدليل محدود)","The results suggest that it may be effective.","الادعاء القطعي لا يناسب دليلاً محدوداً."],["It maybe cause the problem.","It may cause the problem.","may فعل ناقص يتبعه المصدر؛ maybe ظرف."],["The study suggests to change the policy.","The study suggests changing the policy.","suggest يتبعه gerund أو that-clause غالباً."]],"extra":["This appears to be a significant factor.","يبدو أن هذا عامل مهم."]}};
+if(!G.length)return;
+const $=s=>document.querySelector(s);
+const el=(tag,cls,txt)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(txt!==undefined&&txt!==null)n.textContent=txt;return n;};
+const btn=(txt,cls,fn)=>{const b=el('button',cls||'btn',txt);b.type='button';b.addEventListener('click',fn);return b;};
+const levels=['A1','A2','B1','B2','C1','C2'];
+let level='A1', current=null, quiz=null, search='';
+const store=()=>{if(!S.gram)S.gram={};return S.gram;};
+const shuffle=a=>{const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;};
+const clean=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[؟?!.,،؛:"“”'’()]/g,'').replace(/\s+/g,' ').trim()
+ .replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه');
+const section=(title,content)=>{const box=el('section','grx-section');box.append(el('h3','',title));box.append(content);return box;};
+const list=(items,cls)=>{const ul=el('ul',cls||'grx-list');(items||[]).forEach(t=>ul.append(el('li','',t)));return ul;};
+function goList(){current=null;quiz=null;render();}
+function renderList(){
+ const page=$('#page');page.textContent='';
+ const top=el('div','grx-top');
+ top.append(btn('← الرئيسية','btn ghost',()=>{R.view='index';render();window.scrollTo(0,0);}));
+ top.append(el('h1','','📘 موسوعة القواعد'));
+ page.append(top);
+ page.append(el('p','grx-lead','كل القواعد مفتوحة من البداية. اختر أي قاعدة مباشرة، ولا تحتاج إلى اجتياز درس أو اختبار سابق.'));
+ const input=el('input','grx-search');input.type='search';input.placeholder='ابحث عن قاعدة بالإنجليزية أو العربية...';input.value=search;input.addEventListener('input',()=>{search=input.value;drawTopics();});
+ page.append(input);
+ const tabs=el('div','grx-levels');
+ levels.forEach(l=>tabs.append(btn(l,'grx-level '+(level===l?'active':''),()=>{level=l;drawTopics();})));
+ page.append(tabs);
+ const host=el('div','grx-topic-list');host.id='grxTopics';page.append(host);drawTopics();
+ function drawTopics(){
+  tabs.querySelectorAll('button').forEach(b=>{b.classList.toggle('active',b.textContent===level);});
+  host.textContent='';
+  const term=clean(search);
+  const items=G.filter(g=>(term?clean(g[2]+' '+g[3]+' '+g[4]).includes(term):g[0]===level));
+  if(!items.length){host.append(el('p','grx-muted','لا توجد قاعدة مطابقة للبحث.'));return;}
+  items.forEach(g=>{
+   const sc=store()[g[1]],card=el('div','grx-topic');
+   const info=el('div','grx-topic-info');info.append(el('strong','',g[2]),el('small','',g[3]+' · '+g[0]));
+   const right=el('div','grx-topic-right');if(sc!=null)right.append(el('span','grx-score',sc+'%'));
+   right.append(el('span','grx-open','افتح الدرس ←'));
+   card.append(info,right);card.addEventListener('click',()=>{current=g;quiz=null;render();window.scrollTo(0,0);});host.append(card);
+  });
+ }
+}
+function getExamples(g){
+ const d=D[g[1]]||{};
+ const arr=(g[5]||[]).map(x=>[x[0],x[1]]);
+ if(d.extra)arr.push(d.extra);
+ return arr.slice(0,4);
+}
+function renderLesson(){
+ const page=$('#page');page.textContent='';
+ const g=current,d=D[g[1]]||{};
+ page.append(btn('← كل القواعد','btn ghost',goList));
+ page.append(el('div','grx-kicker',g[0]+' · درس متاح'));
+ page.append(el('h1','',g[2]));
+ page.append(el('p','grx-ar-title',g[3]));
+ page.append(el('div','grx-open-note','🔓 هذا الدرس مفتوح مباشرة، ولا يشترط اجتياز أي اختبار سابق.'));
+ page.append(section('1. ما القاعدة؟',el('p','grx-paragraph',d.intro||g[4])));
+ page.append(section('2. متى نستخدمها؟',list(d.uses||[])));
+ page.append(section('3. كيف نكوّن الجملة؟',list(d.form||g[6]||[])));
+ const ex=el('div','grx-examples');
+ getExamples(g).forEach((x,i)=>{const row=el('div','grx-example'),txt=el('div','');txt.append(el('div','grx-en',x[0]),el('div','grx-ar',x[1]));row.append(el('span','grx-num',String(i+1)),txt);ex.append(row);});
+ page.append(section('4. أمثلة صحيحة مع الترجمة',ex));
+ const errors=el('div','grx-errors');
+ (d.errors||[]).forEach((x,i)=>{const row=el('div','grx-error');row.append(el('div','grx-wrong','✗ '+x[0]),el('div','grx-correct','✓ '+x[1]),el('p','grx-why','لماذا؟ '+x[2]));errors.append(row);});
+ page.append(section('5. أمثلة خاطئة وتصحيحها بالتفصيل',errors));
+ page.append(section('6. مقارنة وملاحظات مهمة',list(g[6]||[])));
+ page.append(section('7. نقاط دقيقة يجب الانتباه لها',list(d.notes||[
+  'انتبه إلى معنى الجملة والسياق، وليس إلى كلمة واحدة فقط.',
+  'راجع شكل الفعل المساعد ومطابقته للفاعل والزمن.',
+  'قارن المثال الصحيح بالخطأ لتعرف سبب اختيار التركيب.'
+ ])));
+ const call=el('div','grx-test-callout');call.append(el('strong','','اختبار إتقان القاعدة'),el('p','','15 سؤالاً متنوعاً: اختيار من متعدد، صح وخطأ، ترتيب كلمات، وترجمة في الاتجاهين.'),btn('ابدأ الاختبار · 15 سؤالاً','btn primary',startQuiz));
+ page.append(call);
+}
+function startQuiz(){
+ const g=current,d=D[g[1]]||{},examples=getExamples(g);
+ const samples=shuffle(examples.map(x=>[String(x[0]).split('→').pop().trim(),String(x[1]).split('←').pop().trim()])).slice(0,3);
+ const qs=[];
+ // 3 multiple-choice questions from the lesson's authored bank.
+ (g[7]||[]).slice(0,3).forEach((q,i)=>qs.push({type:'mc',prompt:q[0],options:q[1],why:q[2],correct:0,answer:q[1][0]}));
+ // 3 true/false statements: two valid examples and one deliberately incorrect example.
+ shuffle(samples).slice(0,2).forEach(x=>qs.push({type:'tf',prompt:x[0],correct:true,answer:'الجملة صحيحة كما وردت في الأمثلة.',why:'الجملة صحيحة وتطابق تركيب القاعدة ومعناها.'}));
+ const wrong=(d.errors||[])[0];
+ qs.push({type:'tf',prompt:wrong?wrong[0]:samples[0][0],correct:false,answer:wrong?wrong[1]:samples[0][0],why:wrong?wrong[2]:'هذه الصياغة لا تطابق تركيب القاعدة.'});
+ // 3 word-order questions.
+ samples.forEach(x=>qs.push({type:'order',prompt:'رتّب الكلمات لتكوين الجملة الصحيحة:',words:shuffle(x[0].replace(/→/g,' ').split(/\s+/).filter(Boolean)),answer:x[0].replace(/→/g,' ').replace(/\s+/g,' ').trim(),why:'رتّب الكلمات لتكوين الجملة كما في المثال الصحيح.'}));
+ // 3 translations English -> Arabic, and 3 Arabic -> English.
+ samples.forEach(x=>qs.push({type:'en-ar',prompt:x[0],answer:x[1],why:'قارن ترجمتك بالمعنى النموذجي؛ قد توجد صيغ عربية أخرى صحيحة.'}));
+ samples.forEach(x=>qs.push({type:'ar-en',prompt:x[1],answer:x[0],why:'قارن ترجمتك بالصياغة الإنجليزية النموذجية.'}));
+ quiz={questions:qs,responses:{},wordSelections:{},pending:{}};
+ render();
+ window.scrollTo(0,0);
+}
+function renderQuiz(){
+ const page=$('#page');page.textContent='';
+ const g=current;
+ page.append(btn('← شرح القاعدة','btn ghost',()=>{quiz=null;render();}));
+ page.append(el('div','grx-kicker',g[0]+' · اختبار القاعدة'));
+ page.append(el('h1','',g[2]));
+ page.append(el('p','grx-lead','أجب عن الأسئلة الخمسة عشر. بعد كل إجابة سيظهر التصحيح والتفسير، وفي النهاية ستحصل على نتيجتك.'));
+ const progress=el('div','grx-progress');const done=Object.keys(quiz.responses).length;progress.append(el('div','grx-progress-bar'));progress.firstChild.style.width=(done/15*100)+'%';page.append(progress,el('small','grx-muted',done+' من 15 سؤالاً تمت الإجابة عنها'));
+ quiz.questions.forEach((q,i)=>{
+  const card=el('div','grx-qcard');card.append(el('div','grx-qhead','السؤال '+(i+1)+' / 15 · '+({mc:'اختيار من متعدد',tf:'صح أم خطأ',order:'ترتيب الكلمات','en-ar':'ترجمة إلى العربية','ar-en':'ترجمة إلى الإنجليزية'}[q.type])));
+  const prompt=el('div','grx-qprompt',q.prompt);if(q.type==='en-ar'||q.type==='order')prompt.dir='ltr';card.append(prompt);
+  const saved=quiz.responses[i];
+  if(q.type==='mc'){
+   const opts=shuffle(q.options.map((v,j)=>({v,j})));
+   opts.forEach(o=>{const b=btn(o.v,'grx-option',()=>{if(quiz.responses[i])return;quiz.responses[i]={ok:o.j===q.correct,answer:o.v};renderQuiz();});b.dir='auto';if(saved&&o.j===q.correct)b.classList.add('grx-right');card.append(b);});
+  }else if(q.type==='tf'){
+   const row=el('div','grx-actions');[['صحيح',true],['خطأ',false]].forEach(([t,v])=>row.append(btn(t,'grx-option',()=>{if(quiz.responses[i])return;quiz.responses[i]={ok:v===q.correct,answer:t};renderQuiz();})));card.append(row);
+  }else if(q.type==='order'){
+   const chosen=quiz.wordSelections[i]||[];
+   const tray=el('div','grx-word-tray');q.words.forEach((w,j)=>{const b=btn(w,'grx-word',()=>{if(quiz.responses[i]||chosen.includes(j))return;quiz.wordSelections[i]=chosen.concat(j);renderQuiz();});b.disabled=!!saved||chosen.includes(j);tray.append(b);});card.append(tray);
+   const answer=el('div','grx-built',chosen.map(j=>q.words[j]).join(' '));answer.dir='ltr';card.append(answer);
+   if(!saved){card.append(btn('تراجع عن آخر كلمة','btn ghost',()=>{quiz.wordSelections[i]=chosen.slice(0,-1);renderQuiz();}));card.append(btn('تحقق من الترتيب','btn primary',()=>{const val=chosen.map(j=>q.words[j]).join(' ').replace(/\s+([.,?!])/g,'$1');quiz.responses[i]={ok:clean(val)===clean(q.answer),answer:val};renderQuiz();}));}
+  }else{
+   const pending=quiz.pending[i];
+   const area=el('textarea','grx-translation');area.rows=2;area.placeholder=q.type==='en-ar'?'اكتب الترجمة العربية هنا...':'Write the English translation here...';area.dir=q.type==='en-ar'?'rtl':'ltr';area.value=saved?saved.answer:(pending||'');area.disabled=!!saved||pending!==undefined;card.append(area);
+   if(!saved&&pending===undefined)card.append(btn('اعرض الإجابة النموذجية للمقارنة','btn primary',()=>{const val=area.value.trim();if(!val)return;quiz.pending[i]=val;renderQuiz();}));
+   if(!saved&&pending!==undefined){
+    const model=el('div','grx-feedback');model.append(el('strong','','الإجابة النموذجية:'),el('div','grx-model',q.answer),el('p','','قد توجد ترجمات صحيحة أخرى. قيّم إجابتك بحسب تطابق المعنى، لا تطابق الكلمات حرفياً.'));
+    card.append(model);
+    const self=el('div','grx-actions');
+    self.append(btn('ترجمتي صحيحة في المعنى','grx-option',()=>{quiz.responses[i]={ok:true,answer:pending};renderQuiz();}));
+    self.append(btn('أحتاج إلى مراجعة الترجمة','grx-option',()=>{quiz.responses[i]={ok:false,answer:pending};renderQuiz();}));
+    card.append(self);
+   }
+  }
+  if(saved){
+   const fb=el('div','grx-feedback '+(saved.ok?'good':'bad'));
+   fb.append(el('strong','',saved.ok?'إجابة صحيحة ✓':'تحتاج إلى مراجعة ✗'));
+   if(!saved.ok||q.type==='en-ar'||q.type==='ar-en')fb.append(el('div','grx-model','الإجابة النموذجية: '+q.answer));
+   fb.append(el('p','',q.why||'راجع الشرح والأمثلة أعلاه.'));
+   card.append(fb);
+  }
+  page.append(card);
+ });
+ if(done===15){
+  const score=Math.round(100*quiz.questions.filter((q,i)=>quiz.responses[i]&&quiz.responses[i].ok).length/15);
+  const result=el('div','grx-result');result.append(el('h2','', 'نتيجتك: '+score+'%'),el('p','',score>=80?'أحسنت! أتقنت جزءاً كبيراً من القاعدة.':'راجع الأخطاء والأمثلة، ثم أعد الاختبار لترسيخ القاعدة.'));
+  page.append(result);
+  const old=store()[g[1]]||0;store()[g[1]]=Math.max(old,score);
+  if(score<100){if(!S.gramWeak)S.gramWeak={};S.gramWeak[g[1]]=(S.gramWeak[g[1]]||0)+1;}
+  save();
+  if(!quiz.saved){quiz.saved=true;toast('نتيجتك: '+score+'%');}
+  page.append(btn('إعادة الاختبار بأسئلة مرتبة من جديد','btn primary',startQuiz),btn('العودة إلى شرح القاعدة','btn ghost',()=>{quiz=null;render();}));
+ }
+}
+function render(){
+ if(R.view!=='grammar')return oldRender();
+ if(quiz)renderQuiz();else if(current)renderLesson();else renderList();
+}
+const oldRender=window.render;
+window.render=render;
+})();
+</script>
+
 </body></html>
