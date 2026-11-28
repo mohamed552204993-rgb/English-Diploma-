@@ -4,7 +4,7 @@
    - supabase-config.js: الشبكة أولاً (حتى لا يبقى إعداد قديم) ثم النسخة المحفوظة
    - خطوط Google تُحفظ لتبقى الواجهة بنفس شكلها دون إنترنت
    - التحديث الجديد ينتظر موافقة المستخدم (زر «تحديث») حتى لا يُقطع درس جارٍ */
-const VERSION = 'v16';
+const VERSION = 'v17';
 const CACHE_NAME = 'english-diploma-' + VERSION;
 const FONT_CACHE = 'english-diploma-fonts';
 const SCOPE = self.registration.scope;
@@ -20,7 +20,8 @@ const OPTIONAL = [
   './cover.png',
   './logo.png',
   './supabase-config.js',
-  './foundation-stage.js'
+  './foundation-stage.js',
+  './leon-foundation.html'
 ];
 
 self.addEventListener('install', (event) => {
