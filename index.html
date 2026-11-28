@@ -7874,7 +7874,7 @@ render=function(){
   try{
     if(R.view==='hub')renderHub(page);
     else if(R.view==='map')renderMap(page);
-    else if(R.view==='tests')renderTests(page);
+    else if(R.view==='tests'){if(window.__p12&&typeof window.__p12.renderTests==='function')window.__p12.renderTests(page);else{page.textContent='تعذّر تحميل الاختبارات.';}}
     else if(R.view==='pron'){if(window.__p13)window.__p13.render(page);else page.textContent='تعذّر تحميل مختبر النطق.';}
     else if(R.view==='spec'){if(window.__p15)window.__p15.render(page);else page.textContent='تعذّر تحميل التخصصات.';}
     else if(R.view==='vocab'){if(window.__vb)window.__vb.render(page);else page.textContent='تعذّر تحميل بنك المفردات.';}
@@ -7897,7 +7897,7 @@ function hubBtn(){
   b.setAttribute('aria-current',VIEWS.includes(R.view)?'page':'false');
 }
 hubBtn();
-window.__p12={go,levelData};
+window.__p12={go,levelData,renderTests};
 })();
 </script>
 <script id="p13">
