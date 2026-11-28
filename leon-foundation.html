@@ -118,5 +118,6 @@ async function aiQuiz(){const w=IT.filter(i=>K.it[i.k]&&K.it[i.k].w>0).sort((a,b
 function mic(){const it=ses.items[ses.in],m=$('#mr'),r=new SR(),nm=s=>s.toLowerCase().replace(/[^a-z0-9 ]/g,'').trim(),tg=nm(it.w);r.lang='en-US';r.maxAlternatives=5;m.textContent='🎤 تكلم الآن...';
  r.onresult=e=>{const al=[...e.results[0]].map(x=>nm(x.transcript)),ok=al.some(a=>a.includes(tg)||(it.t=='N'&&a==''+it.n));m.textContent=ok?'✅ نطق ممتاز! 🌟':'🙂 سمعت: '+al[0]+' — جرّب مرة أخرى';if(ok)beep(1)};
  r.onerror=()=>{m.textContent='لم أسمعك. اسمح بالميكروفون وجرّب مرة أخرى.'};try{r.start()}catch(e){m.textContent='الميكروفون غير متاح'}}
+window.addEventListener('pagehide',function(){reportStudy(false)});document.addEventListener('visibilitychange',function(){if(document.hidden)reportStudy(false)});
 try{navigator.storage.persist()}catch(e){}load();ensureLearner();home();
 </script></body></html>
