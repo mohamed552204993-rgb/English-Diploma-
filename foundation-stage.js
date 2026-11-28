@@ -23,3 +23,25 @@
   }
   window.__foundation = {open:openFoundation,source:'Leo English original'};
 })();
+/* Leo foundation progress bridge: merge XP and study activity into the main diploma account. */
+(function(){
+  if(window.__leoFoundationBridgeInstalled)return;
+  window.__leoFoundationBridgeInstalled=true;
+  window.addEventListener('message',function(event){
+    var frame=document.querySelector('.fd-leon-frame');
+    if(!frame||event.source!==frame.contentWindow)return;
+    var data=event.data;
+    if(!data||data.type!=='leo-foundation-progress')return;
+    var xp=Math.max(0,Math.min(100,Math.floor(Number(data.xp)||0)));
+    var seconds=Math.max(0,Math.min(7200,Math.floor(Number(data.seconds)||0)));
+    try{
+      if(xp&&typeof addXP==='function')addXP(xp);
+      if((seconds||data.completed)&&typeof today==='function'){
+        var day=today();
+        day.sec=(Number(day.sec)||0)+seconds;
+        if(data.completed){day.lessons=(Number(day.lessons)||0)+1;day.sessions=(Number(day.sessions)||0)+1;}
+      }
+      if((xp||seconds||data.completed)&&typeof save==='function')save();
+    }catch(error){console.error('Leo progress bridge:',error);}
+  });
+})();
