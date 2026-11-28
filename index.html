@@ -998,7 +998,6 @@ STAGES.l602=['مقدمة','الكلمات','الفكرة','الفكرة','الف
 CHECKS.l602={
  2:{q:'She has been ___ French since January.',o:['learning','learned','learn'],a:0,why:'بعد has been يأتي الفعل مع -ing.'},
  3:{q:'Your hair is wet. ___ you been swimming?',o:['Have','Did','Are'],a:0,why:'نبدأ السؤال بـ Have.'}, 4:{q:'I have ___ three emails this morning.',o:['written','been writing','been written'],a:0,why:'العدد المحدد يستخدم المضارع التام البسيط.'}};
-
 STEPS.l603=[
  {h:'ماذا سنتعلم؟',b:`<p>الماضي التام للحدث الذي وقع قبل حدث ماضٍ آخر:</p><p>• ${e('When I arrived, the film had already started.')}</p><p>• ${e('She was sad because she had lost her phone.')}</p>`},
  {h:'كلمات الدرس',b:`<table class="tbl"><tr><td>${e('already')}</td><td>بالفعل</td></tr><tr><td>${e('by the time')}</td><td>بحلول الوقت الذي</td></tr><tr><td>${e('after')}</td><td>بعد أن</td></tr><tr><td>${e('before')}</td><td>قبل أن</td></tr><tr><td>${e('realise')}</td><td>يدرك</td></tr><tr><td>${e('never before')}</td><td>لم يحدث من قبل</td></tr></table>`},
@@ -1997,7 +1996,6 @@ mkSteps('l909',{
  x:[['The freedom comes with responsibility.','Freedom comes with responsibility.'],['The elderlies deserve dignity.','The elderly deserve dignity.'],['Tolerance build peaceful societies.','Tolerance builds peaceful societies.']],
  s:[['مفهوم','بلا the عادةً'],['فئة','«the + صفة»'],['تعميم حذر','«It is often argued that ...»']],
  q:[['___ comes with responsibility.',['Freedom','The freedom','A freedom'],'اسم مجرد عام بلا the.'],['___ deserve dignity.',['The elderly','Elderly the','An elderly'],'the + صفة = فئة.'],['Tolerance ___ peaceful societies.',['builds','build','building'],'اسم مجرد مفرد: builds.']]});
-
 mkSteps('l910',{
  i:['كيف تكشف الحجة الضعيفة وتفنّدها:','This argument rests on the assumption that all rich people are happy.','It does not follow that every rich person is happy.','One counterexample is enough to disprove the claim.'],
  w:[['fallacy','مغالطة'],['assumption','افتراض'],['generalisation','تعميم'],['straw man','رجل القش'],['ad hominem','هجوم شخصي'],['circular reasoning','استدلال دائري'],['counterexample','مثال مضاد'],['rebut','يفنّد']],
@@ -2997,8 +2995,7 @@ const CURR=[
     mc("اكتشف الخطأ: «She is going to visits Cairo.» الصواب:",["She is going to visit Cairo.", "She going to visit Cairo.", "She is go to visit Cairo."],0,"بعد going to الفعل أصلي."),
     mc("Yes, I am. — ___ you going to travel?",["Are", "Is", "Do"],0),    mc("كلمة تدل على المستقبل:",["next week", "last week", "yesterday"],0),
     mc("كيف تقول «خطة»؟",["plan", "trip", "holiday"],0),
-    od("هل ستسافر غداً؟","Are you going to travel tomorrow?"),
-    od("لن أحجز فندقاً","I'm not going to book a hotel.")]),
+    od("هل ستسافر غداً؟","Are you going to travel tomorrow?"),    od("لن أحجز فندقاً","I'm not going to book a hotel.")]),
   lesson('l14','Weather & will','الطقس والتوقعات',[
     ['sunny','مشمس','It is sunny today.'],['rainy','ممطر','It will be rainy tomorrow.'],['cold','بارد','It is cold in winter.'],
     ['hot','حار','Summer is very hot.'],['umbrella','مظلة','Take an umbrella.'],['forecast','توقعات الطقس','The forecast says rain.'],
@@ -3997,8 +3994,7 @@ CURR.find(l=>l.level==='A2').units.push({en:'Travel & Holidays',ar:'السفر �
    od('رحلتي تقلع في السادسة','My flight takes off at six.')])]});
 CURR.find(l=>l.level==='A2').units.push({en:'Habits & Feelings',ar:'العادات والمشاعر',lessons:[
  lesson('l527','Used to','عادات الماضي',[
-  ['used to','اعتاد أن','I used to live in Cairo.'],['when I was young','عندما كنت صغيراً','I played outside when I was young.'],['every summer','كل صيف','We visited the sea every summer.'],
-  ['childhood','طفولة','I had a happy childhood.'],['village','قرية','We lived in a small village.'],['no longer','لم يعد','I no longer play with toys.'],
+  ['used to','اعتاد أن','I used to live in Cairo.'],['when I was young','عندما كنت صغيراً','I played outside when I was young.'],['every summer','كل صيف','We visited the sea every summer.'],  ['childhood','طفولة','I had a happy childhood.'],['village','قرية','We lived in a small village.'],['no longer','لم يعد','I no longer play with toys.'],
   ['in the past','في الماضي','In the past, people wrote letters.'],['now','الآن','Now I live in Amman.'],['change','يتغيّر','Cities change quickly.'],
   ['toy','لعبة','I had many toys.'],['grandparents','الأجداد','We visited my grandparents.'],['always','دائماً','He always wore a hat.']],
   `<p>نستخدم ${e('used to')} + الفعل للعادات والحالات التي كانت في الماضي وانتهت: ${e('I used to play football every day.')} (لم أعد أفعل ذلك)</p><p>النفي: ${e("I didn't use to like fish.")} والسؤال: ${e('Did you use to live here?')} (لاحظ حذف d بعد did).</p><p>للمقارنة بين الماضي والحاضر: ${e('I used to walk to school, but now I take the bus.')}</p><p>لا نستخدم ${e('used to')} للحدث الذي حدث مرة واحدة: ${e('I went to Paris last year.')}</p>`,
@@ -4997,8 +4993,7 @@ CURR.find(l=>l.level==='A1').units.push({en:'Everyday Words',ar:'كلمات يو
   ['cat','قطة','I have a small cat.'],['dog','كلب','The dog is in the garden.'],['bird','طائر','A bird can fly.'],
   ['fish','سمكة','Fish live in water.'],['horse','حصان','The horse is very fast.'],['cow','بقرة','A cow gives us milk.'],
   ['sheep','خروف','The sheep eat grass.'],['camel','جمل','Camels live in the desert.'],['lion','أسد','The lion is a big animal.'],
-  ['rabbit','أرنب','The rabbit likes carrots.'],['monkey','قرد','The monkey is funny.'],['elephant','فيل','An elephant is very big.']],
-  `<p>للتعبير عن الملكية: ${e('I have a cat.')} وللجمع نضيف s: ${e('two cats')} و${e('three dogs')}.</p><p>للتعميم نستخدم الجمع: ${e('Cats like milk.')} ${e('Camels live in the desert.')}</p><p>للسؤال والوصف: ${e('What animal is it?')} ${e('It is a big animal.')}</p><p>ملاحظة: ${e('sheep')} و${e('fish')} لهما الشكل نفسه في المفرد والجمع.</p>`,
+  ['rabbit','أرنب','The rabbit likes carrots.'],['monkey','قرد','The monkey is funny.'],['elephant','فيل','An elephant is very big.']],  `<p>للتعبير عن الملكية: ${e('I have a cat.')} وللجمع نضيف s: ${e('two cats')} و${e('three dogs')}.</p><p>للتعميم نستخدم الجمع: ${e('Cats like milk.')} ${e('Camels live in the desert.')}</p><p>للسؤال والوصف: ${e('What animal is it?')} ${e('It is a big animal.')}</p><p>ملاحظة: ${e('sheep')} و${e('fish')} لهما الشكل نفسه في المفرد والجمع.</p>`,
   [mc('A ___ gives us milk.',['cow','lion','fish'],0),
    mc('A ___ lives in water.',['fish','horse','camel'],0),
    mc('Camels live in the ___.',['desert','sea','house'],0),
@@ -5997,8 +5992,7 @@ function renderType(ex,host,prev,cb){
   inp.addEventListener('keydown',k=>{if(k.key==='Enter')go();});
   if(prev){inp.value=prev.val;inp.disabled=true;btn.hidden=true;fb(host,prev.ok,ex.s,ex.why);}
 }
-const _rx=renderEx;renderEx=function(ex,host,prev,cb){if(ex.t==='type'||ex.t==='dict')return renderType(ex,host,prev,cb);return _rx(ex,host,prev,cb);};
-const _le=lessonExercises;
+const _rx=renderEx;renderEx=function(ex,host,prev,cb){if(ex.t==='type'||ex.t==='dict')return renderType(ex,host,prev,cb);return _rx(ex,host,prev,cb);};const _le=lessonExercises;
 lessonExercises=function(L){const a=_le(L),v=L.vocab;
   a.splice(a.length-1,0,{t:'type',q:`اكتب بالإنجليزية: <b>${v[2].ar}</b>`,s:v[2].en,why:`<span class="en" dir="ltr">${v[2].ex}</span>`},{t:'dict',s:v[3].ex,say:v[3].ex,why:`${v[3].en} = ${v[3].ar}`});return a;};
 /* smart review: wrong answers return on a spaced schedule (1,2,4 days), cleared after 3 correct reviews */
@@ -6948,6 +6942,11 @@ function say(u,sentence,slow){
       return;
     }catch(x){}
   }
+  /* Android APK: use the app's native TextToSpeech bridge. Some WebViews
+     expose speechSynthesis methods that exist but do not actually speak. */
+  if(window.NativeTextToSpeech && typeof window.speak==='function'){
+    try{window.speak(spoken,slow===true);fallback(total/(14*(slow?.6:.9))*1000);return;}catch(x){}
+  }
   if(!('speechSynthesis' in window)){toast('الصوت غير متاح على جهازك');return;}
   try{
     const ut=new SpeechSynthesisUtterance(spoken);ut.lang=S.accent==='UK'?'en-GB':'en-US';ut.rate=slow?.6:.9;
@@ -6980,7 +6979,7 @@ function hideBar(){if(bar)bar.hidden=true;clearTimeout(barT);}
 let pop=null;
 function closePop(){if(pop){pop.remove();pop=null;}}
 window.__lk=lookup;
-function wordCard(word){
+function wordCard(word,context){
   closePop();stopAll();
   const info=lookup(word);
   const clean=word.replace(/[’]/g,"'");
@@ -6988,11 +6987,11 @@ function wordCard(word){
   const rows=[];
   if(info){
     rows.push(['المعنى',`<b>${info.ar}</b>`]);
+    if(context)rows.push(['الكلمة في المثال',`<span class="en" dir="ltr">${String(context).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]))}</span>`]);
     rows.push(['النطق',info.ipa?`<span class="en" dir="ltr">/${info.ipa}/</span>`:'<span class="note">اضغط 🔊 لتسمع النطق</span>']);
     if(info.pos)rows.push(['نوع الكلمة',info.pos]);
     if(info.base)rows.push(['أصل الكلمة',`<span class="en" dir="ltr">${info.base}</span>`]);
-    if(info.level)rows.push(['المستوى',info.level]);    if(info.ex)rows.push(['مثال',`<span class="en wex" dir="ltr">${info.ex}</span>`]);
-  }else{
+    if(info.level)rows.push(['المستوى',info.level]);    if(info.ex)rows.push(['مثال',`<span class="en wex" dir="ltr">${info.ex}</span>`]);  }else{
     rows.push(['المعنى','<span class="note">لا توجد ترجمة جاهزة لهذه الكلمة بعد. اضغط 🔊 لتسمع نطقها، أو </span><a href="https://translate.google.com/?sl=en&tl=ar&op=translate&text='+encodeURIComponent(clean)+'" target="_blank" rel="noopener">ابحث عن ترجمتها 🌐</a>']);
   }
   pop.innerHTML=`<div class="wp-h"><span class="en wp-w" dir="ltr">${clean}</span><button type="button" class="wp-s" aria-label="استمع للكلمة">🔊</button><button type="button" class="wp-x" aria-label="إغلاق">×</button></div>`+
@@ -7013,10 +7012,13 @@ document.addEventListener('pointerdown',ev=>{
   if(ev.pointerType==='mouse'&&ev.button!==0)return;
   const u=unitOf(ev.target);if(!u){press=null;return;}
   prepare(u);
-  const wEl=ev.target.closest('.wd');
+  /* prepare() replaces the original text node, so ev.target may still be the
+     parent .en element. Resolve the freshly-created word span at the touch point. */
+  const hit=document.elementFromPoint(ev.clientX,ev.clientY);
+  const wEl=hit&&hit.closest?hit.closest('.wd'):null;
   press={u,wEl,x:ev.clientX,y:ev.clientY,long:false,t:0};
-  if(!wEl){press.t=0;return;}
-  press.t=setTimeout(()=>{if(!press)return;press.long=true;wordCard(wEl.textContent);},LONG);
+  if(!wEl)return;
+  press.t=setTimeout(()=>{if(!press)return;press.long=true;const w=u._ws.find(x=>x.el===wEl);const ctx=w?sentenceAt(u,w).text:'';wordCard(wEl.textContent,ctx);},LONG);
 },true);
 document.addEventListener('pointermove',ev=>{if(press&&press.t&&Math.hypot(ev.clientX-press.x,ev.clientY-press.y)>12){clearTimeout(press.t);press=null;}},true);
 document.addEventListener('pointercancel',()=>{if(press){clearTimeout(press.t);press=null;}},true);
@@ -7026,7 +7028,7 @@ document.addEventListener('pointerup',ev=>{
   p.u._lastGesture=performance.now();
   if(p.long){window.__wgLong=performance.now();return;}
   const w=p.wEl?p.u._ws.find(x=>x.el===p.wEl):null;
-  const sentence=w?sentenceAt(p.u,w):{s:0,e:p.u._full.length,text:p.u._full.trim()};
+  const sentence=w?{s:w.start,e:w.end,text:w.el.textContent}:{s:0,e:p.u._full.length,text:p.u._full.trim()};
   window.__wgTap=performance.now();
   say(p.u,sentence,false);
 },true);
@@ -7282,7 +7284,9 @@ render=function(){
     return;
   }
   const g=cur;
-  page.append(h('button',{type:'button',class:'btn',onclick:()=>{cur=null;render();}},'← المواضيع'),h('h2',{},g[2]+' · '+g[3]),h('h3',{},'الشرح'),h('p',{},g[4]),h('h3',{},'أمثلة'));
+  const explanation=h('div',{class:'grammar-explanation'});
+  String(g[4]||'').split(/(?<=[.!?؟])\s+/u).filter(Boolean).forEach(line=>explanation.append(h('p',{style:'margin:6px 0;line-height:1.9'},line)));
+  page.append(h('button',{type:'button',class:'btn',onclick:()=>{cur=null;render();}},'← المواضيع'),h('h2',{},g[2]+' · '+g[3]),h('h3',{},'الشرح'),explanation,h('h3',{},'أمثلة'));
   g[5].forEach(x=>page.append(h('div',{class:'wp-r'},h('div',{class:'en',dir:'ltr'},x[0]),h('small',{},x[1]))));
   page.append(h('h3',{},'مقارنة'),...g[6].map(t=>h('p',{class:'note'},t)),h('h3',{},'تمارين'));
   g[7].forEach((q,qi)=>{const box=h('div',{class:'wp-r'},h('div',{class:'en',dir:'ltr'},q[0])),fb=h('small',{});
@@ -7986,8 +7990,7 @@ const VOW=[
 ['مزدوجة (تنزلق من صوت إلى آخر)'],
 ['/eɪ/','day','/deɪ/',['say','make','rain','eight'],'ابدأ بـ /e/ وانزلق نحو /ɪ/.'],
 ['/aɪ/','my','/maɪ/',['time','five','night','buy'],'ابدأ بفم مفتوح /a/ وانزلق نحو /ɪ/.'],
-['/ɔɪ/','boy','/bɔɪ/',['toy','coin','enjoy','voice'],'ابدأ بـ /ɔ/ مستديرة وانزلق نحو /ɪ/.'],
-['/aʊ/','now','/naʊ/',['house','down','brown','about'],'ابدأ بفم مفتوح وانزلق نحو /ʊ/ مع استدارة الشفتين.'],
+['/ɔɪ/','boy','/bɔɪ/',['toy','coin','enjoy','voice'],'ابدأ بـ /ɔ/ مستديرة وانزلق نحو /ɪ/.'],['/aʊ/','now','/naʊ/',['house','down','brown','about'],'ابدأ بفم مفتوح وانزلق نحو /ʊ/ مع استدارة الشفتين.'],
 ['/əʊ/','go','/ɡəʊ/',['home','phone','no','boat'],'في الأمريكية يُكتب /oʊ/ ويُنطق go /ɡoʊ/. ابدأ بصوت محايد وانتهِ بشفتين مستديرتين.'],
 ['/ɪə/','near','/nɪə/',['here','ear','year','beer'],'بريطاني: انزلق من /ɪ/ إلى /ə/. في الأمريكية يُنطق الراء: near /nɪr/.'],
 ['/eə/','hair','/heə/',['care','share','where','chair'],'بريطاني: انزلق من /e/ إلى /ə/. في الأمريكية: hair /her/.'],
@@ -8986,8 +8989,7 @@ const PASS=2;
 S.vb=S.vb||{};S.vb.s=S.vb.s||{};
 const POS={n:'اسم',v:'فعل',adj:'صفة',adv:'ظرف',prep:'حرف جر',conj:'أداة ربط',det:'محدِّد',pron:'ضمير',mod:'فعل مساعد',wh:'أداة استفهام',ph:'عبارة','':'—'};
 const LV=DATA.levels;
-const TOP=DATA.topics;
-const WORDS=DATA.words;
+const TOP=DATA.topics;const WORDS=DATA.words;
 const esc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const rnd=()=>Math.random()-0.5;
 const shuffle=a=>a.slice().sort(rnd);
@@ -9986,8 +9988,7 @@ function hideBanner(){var b=document.getElementById('p2Banner');if(b)b.hidden=tr
 var syncing=null,again=false,retryT=0,retryN=0,thT=0,lastAt=0;
 function locked(){return !!document.getElementById('unlock')}
 function scheduleRetry(){
-  clearTimeout(retryT);if(!isDirty()||!sess()||retryN>8)return;
-  retryT=setTimeout(function(){syncNow(true)},Math.min(300000,15000*Math.pow(2,Math.max(0,retryN-1))));
+  clearTimeout(retryT);if(!isDirty()||!sess()||retryN>8)return;  retryT=setTimeout(function(){syncNow(true)},Math.min(300000,15000*Math.pow(2,Math.max(0,retryN-1))));
 }
 async function doSync(){
   if(!sess()||!sbCfg())return {ok:false,why:'nosess'};  if(navigator.onLine===false)return {ok:false,why:'offline'};
