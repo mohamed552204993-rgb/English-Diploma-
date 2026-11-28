@@ -32,7 +32,7 @@
     if(!frame||event.source!==frame.contentWindow)return;
     var data=event.data;
     if(!data||data.type!=='leo-foundation-progress')return;
-    var xp=Math.max(0,Math.min(100,Math.floor(Number(data.xp)||0)));
+    var xp=Math.max(0,Math.min(100000,Math.floor(Number(data.xp)||0)));
     var seconds=Math.max(0,Math.min(7200,Math.floor(Number(data.seconds)||0)));
     try{
       if(xp&&typeof addXP==='function')addXP(xp);
