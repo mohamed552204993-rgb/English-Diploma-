@@ -62,7 +62,7 @@ function rec(k,ok){const r=K.it[k]||(K.it[k]={b:0,d:0,r:0,w:0});
  else{r.w++;r.b=0;r.d=Date.now()+IV[0];ses.hurt.add(k)}}
 const dueList=()=>IT.filter(i=>K.it[i.k]&&K.it[i.k].d<=Date.now()).sort((a,b)=>K.it[a.k].d-K.it[b.k].d);
 // ---- Profiles ----
-function ensureLearner(){if(!S.kids)S.kids=[];if(!S.kids.length)S.kids.push({id:'single-learner',name:'المتعلم',av:'🦁',xp:0,st:0,last:'',done:{},it:{},ms:0,ss:0});K=S.kids[0];S.cur=0;K.done=K.done||{};K.it=K.it||{};save();}
+function ensureLearner(){if(!S.kids)S.kids=[];if(!S.kids.length)S.kids.push({id:'single-learner',name:'المتعلم',av:'🦁',xp:0,st:0,last:'',done:{},it:{},ms:0,ss:0});const idx=Number.isInteger(S.cur)&&S.cur>=0&&S.cur<S.kids.length?S.cur:0;K=S.kids[idx];S.cur=idx;K.done=K.done||{};K.it=K.it||{};if(!K.diplomaXPMigrated){K.diplomaXPMigrated=true;const legacyXP=Math.max(0,Math.min(100000,Math.floor(Number(K.xp)||0)));if(legacyXP)reportToDiploma({xp:legacyXP});}save();}
 // ---- Home / map ----
 function reportToDiploma(data){try{const w=(window.parent&&window.parent!==window)?window.parent:window;w.postMessage(Object.assign({type:'leo-foundation-progress'},data||{}),'*');}catch(e){}}
 function reportStudy(completed){if(!ses||!ses.t0)return;const now=Date.now(),from=ses.lastReportAt||ses.t0,seconds=Math.max(0,Math.floor((now-from)/1000));ses.lastReportAt=now;if(seconds||completed)reportToDiploma({seconds:seconds,completed:!!completed});}
